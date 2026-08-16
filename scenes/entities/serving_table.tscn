@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/entities/serving_table.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/serving_table.svg" id="2_texture"]
+
+[sub_resource type="CircleShape2D" id="CircleShape_interaction"]
+radius = 90.0
+
+[node name="ServingTable" type="Node2D"]
+script = ExtResource("1_script")
+interaction_label = "Servir pedido"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -43)
+texture = ExtResource("2_texture")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(0, -38)
+collision_layer = 2
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape_interaction")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -62.0
+offset_top = -120.0
+offset_right = 62.0
+offset_bottom = -97.0
+text = "Mesa de servicio"
+horizontal_alignment = 1

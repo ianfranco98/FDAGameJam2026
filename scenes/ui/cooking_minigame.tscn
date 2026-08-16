@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://u0qrmolvv2qn"]
+
+[ext_resource type="Script" uid="uid://dh5k5sg1e8ml7" path="res://scripts/ui/cooking_minigame.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+bg_color = Color(0.105882, 0.0784314, 0.0588235, 0.94)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.92549, 0.470588, 0.196078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CookingMinigame" type="CanvasLayer" unique_id=597674738]
+layer = 5
+script = ExtResource("1_script")
+
+[node name="Content" type="PanelContainer" parent="." unique_id=1533822934]
+offset_left = 44.0
+offset_top = 25.0
+offset_right = 497.93
+offset_bottom = 278.655
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="Margin" type="MarginContainer" parent="Content" unique_id=1384827065]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Content/Margin" unique_id=857674561]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Content/Margin/VBox" unique_id=678289721]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.729412, 0.352941, 1)
+theme_override_font_sizes/font_size = 22
+text = "MINIJUEGO: PARRILLA"
+horizontal_alignment = 1
+
+[node name="Separator" type="HSeparator" parent="Content/Margin/VBox" unique_id=1022222349]
+layout_mode = 2
+
+[node name="Status" type="Label" parent="Content/Margin/VBox" unique_id=570740444]
+layout_mode = 2
+text = "Esperando una pieza de carne..."
+horizontal_alignment = 1
+
+[node name="Pending" type="Label" parent="Content/Margin/VBox" unique_id=1965913432]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.72, 0.72, 1)
+text = "Panel visual — lógica pendiente"
+horizontal_alignment = 1

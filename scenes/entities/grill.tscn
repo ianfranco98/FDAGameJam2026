@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cqwm504skrohg"]
+
+[ext_resource type="Script" uid="uid://ctb4fvcsx8a54" path="res://scripts/entities/grill.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bw5t2c6nkldyw" path="res://assets/placeholders/grill.svg" id="2_grill"]
+[ext_resource type="Texture2D" uid="uid://bkuut5y3i882w" path="res://assets/placeholders/meat.svg" id="3_meat"]
+
+[sub_resource type="CircleShape2D" id="CircleShape_interaction"]
+radius = 82.0
+
+[node name="Grill" type="Node2D" unique_id=2108630794]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1329060165]
+position = Vector2(0, -40)
+scale = Vector2(2, 2)
+texture = ExtResource("2_grill")
+
+[node name="MeatIndicator" type="Sprite2D" parent="." unique_id=644217848]
+position = Vector2(0, -62)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("3_meat")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=339687781]
+position = Vector2(0, -36)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1195046372]
+shape = SubResource("CircleShape_interaction")
+
+[node name="Label" type="Label" parent="." unique_id=1538960110]
+offset_left = -40.0
+offset_top = -113.0
+offset_right = 40.0
+offset_bottom = -90.0
+text = "Parrilla"
+horizontal_alignment = 1

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/entities/npc.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/npc.svg" id="2_texture"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_npc"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": ExtResource("2_texture")}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape_npc"]
+radius = 34.0
+
+[node name="NPC" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -48)
+sprite_frames = SubResource("SpriteFrames_npc")
+animation = &"default"
+
+[node name="CharacterArea" type="Area2D" parent="."]
+position = Vector2(0, -38)
+collision_layer = 4
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterArea"]
+shape = SubResource("CircleShape_npc")
+
+[node name="StateLabel" type="Label" parent="."]
+offset_left = -43.0
+offset_top = -112.0
+offset_right = 44.0
+offset_bottom = -89.0
+text = "NPC: SEATED"
+horizontal_alignment = 1

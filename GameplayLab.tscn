@@ -1,3 +1,164 @@
 [gd_scene format=3 uid="uid://b2qdj3ww6etd4"]
 
-[node name="GameplayLab" type="Node2D" unique_id=1349077501]
+[ext_resource type="Script" uid="uid://42ra35msfqse" path="res://scripts/gameplay_lab.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://cdrx467pqcebk" path="res://scenes/entities/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/entities/npc.tscn" id="3_npc"]
+[ext_resource type="PackedScene" path="res://scenes/entities/meat_desk.tscn" id="4_meat_desk"]
+[ext_resource type="PackedScene" uid="uid://cqwm504skrohg" path="res://scenes/entities/grill.tscn" id="5_grill"]
+[ext_resource type="PackedScene" path="res://scenes/entities/fernet.tscn" id="6_fernet"]
+[ext_resource type="PackedScene" path="res://scenes/entities/fernet_craft_table.tscn" id="7_fernet_table"]
+[ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="8_knb0c"]
+[ext_resource type="PackedScene" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
+[ext_resource type="Resource" uid="uid://cqp0a7ma5ti2v" path="res://scripts/entities/TestMeat.tres" id="9_5kvol"]
+[ext_resource type="PackedScene" uid="uid://u0qrmolvv2qn" path="res://scenes/ui/cooking_minigame.tscn" id="9_minigame"]
+
+[node name="GameplayLab" type="Node2D" unique_id=2111630056]
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1277276618]
+z_index = -20
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.152941, 0.223529, 0.188235, 1)
+
+[node name="SkyBand" type="ColorRect" parent="." unique_id=1146415888]
+z_index = -19
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 1281.0
+offset_bottom = 437.0
+mouse_filter = 2
+color = Color(0.360784, 0.568627, 0.65098, 1)
+
+[node name="Lane" type="ColorRect" parent="." unique_id=1763433040]
+z_index = -18
+offset_top = 445.0
+offset_right = 1280.0
+offset_bottom = 680.0
+mouse_filter = 2
+color = Color(0.27451, 0.211765, 0.152941, 1)
+
+[node name="LaneLine" type="ColorRect" parent="." unique_id=308532620]
+z_index = -17
+offset_left = 2.0
+offset_top = 494.0
+offset_right = 1282.0
+offset_bottom = 500.0
+mouse_filter = 2
+color = Color(0.772549, 0.611765, 0.321569, 0.65)
+
+[node name="Title" type="Label" parent="." unique_id=119368781]
+offset_left = 458.0
+offset_top = 12.0
+offset_right = 822.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 0.901961, 0.658824, 1)
+theme_override_font_sizes/font_size = 26
+text = "ASADO ARGENTO — GAMEPLAY LAB"
+horizontal_alignment = 1
+
+[node name="GuestTable" type="ColorRect" parent="." unique_id=391145268]
+z_index = -5
+offset_left = 560.0
+offset_top = 457.0
+offset_right = 1281.975
+offset_bottom = 541.63
+mouse_filter = 2
+color = Color(0.552941, 0.337255, 0.180392, 1)
+
+[node name="GuestTableLabel" type="Label" parent="." unique_id=1762015204]
+offset_left = 749.0
+offset_top = 415.0
+offset_right = 969.0
+offset_bottom = 443.0
+text = "Mesa de invitados"
+horizontal_alignment = 1
+
+[node name="Entities" type="Node2D" parent="." unique_id=241066293]
+
+[node name="MeatDesk" parent="Entities" unique_id=223307176 instance=ExtResource("4_meat_desk")]
+position = Vector2(66, 529)
+interaction_label = "Interactuar"
+
+[node name="Grill" parent="Entities" unique_id=790372974 instance=ExtResource("5_grill")]
+position = Vector2(282, 452)
+
+[node name="Fernet" parent="Entities" unique_id=1191953493 instance=ExtResource("6_fernet")]
+position = Vector2(467, 347)
+interaction_label = "Interactuar"
+
+[node name="FernetCraftTable" parent="Entities" unique_id=2018137713 instance=ExtResource("7_fernet_table")]
+position = Vector2(628, 653)
+interaction_label = "Interactuar"
+
+[node name="ServingTable" parent="Entities" unique_id=1800828113 instance=ExtResource("8_serving")]
+position = Vector2(607, 508)
+interaction_label = "Interactuar"
+
+[node name="NPC" parent="Entities" unique_id=1204504510 instance=ExtResource("3_npc")]
+position = Vector2(760, 576)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol")])
+
+[node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]
+position = Vector2(322, 505)
+
+[node name="CookingMinigame" parent="." unique_id=579274624 instance=ExtResource("9_minigame")]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1186212093]
+layer = 10
+
+[node name="Margin" type="MarginContainer" parent="HUD" unique_id=1698829734]
+offset_left = 18.0
+offset_top = 578.0
+offset_right = 348.0
+offset_bottom = 730.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="HUD/Margin" unique_id=2135361792]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="AngerValue" type="Label" parent="HUD/Margin/VBox" unique_id=1075152363]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Enojo: 50 / 100"
+
+[node name="AngerBar" type="ProgressBar" parent="HUD/Margin/VBox" unique_id=44489301]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+value = 50.0
+show_percentage = false
+
+[node name="HeldItem" type="Label" parent="HUD/Margin/VBox" unique_id=291526245]
+layout_mode = 2
+text = "Llevando: Nada"
+
+[node name="FernetUsages" type="Label" parent="HUD/Margin/VBox" unique_id=2081388099]
+layout_mode = 2
+text = "Fernet: 3 / 3 usos"
+
+[node name="InteractionPrompt" type="Label" parent="HUD" unique_id=787933513]
+offset_left = 440.0
+offset_top = 648.0
+offset_right = 840.0
+offset_bottom = 685.0
+theme_override_colors/font_color = Color(1, 0.894118, 0.486275, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="HUD" unique_id=982499810]
+offset_left = 270.0
+offset_top = 596.0
+offset_right = 1010.0
+offset_bottom = 628.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=243238414]
+wait_time = 3.0
+one_shot = true

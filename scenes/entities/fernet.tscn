@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/entities/fernet.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/fernet.svg" id="2_texture"]
+
+[sub_resource type="CircleShape2D" id="CircleShape_interaction"]
+radius = 68.0
+
+[node name="Fernet" type="Node2D"]
+script = ExtResource("1_script")
+interaction_label = "Tomar vaso vacío"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+texture = ExtResource("2_texture")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(0, -38)
+collision_layer = 2
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape_interaction")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -122.0
+offset_right = 40.0
+offset_bottom = -99.0
+text = "Fernet"
+horizontal_alignment = 1

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Meat" format=3 uid="uid://cqp0a7ma5ti2v"]
+
+[ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="1_uh1k6"]
+
+[resource]
+script = ExtResource("1_uh1k6")
+meat_type = 1
+metadata/_custom_type_script = "uid://d2mgufc8y8sd8"
