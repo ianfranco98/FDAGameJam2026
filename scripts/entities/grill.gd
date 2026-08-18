@@ -20,7 +20,8 @@ func _process(delta: float) -> void:
 	for placed_meat in current_placed_meat:
 		if placed_meat.cook(delta):
 			placed_meat.update_sprite()
-			meat_ready.emit(placed_meat)
+			if placed_meat.cook_state == GrillMeat.CookState.READY:
+				meat_ready.emit(placed_meat)
 			changed = true
 	if changed:
 		grill_changed.emit()
@@ -54,6 +55,27 @@ func try_pick_ready_meat(player: Player, placed_meat: GrillMeat) -> bool:
 		placed_meat.sprite.queue_free()
 	player.hold_cooked_meat(placed_meat.order)
 	player.notify("Retiraste %s cocida de la parrilla." % placed_meat.meat.get_display_name())
+	grill_changed.emit()
+	_update_indicator()
+	return true
+
+
+func try_flip_meat(placed_meat: GrillMeat) -> bool:
+	if not current_placed_meat.has(placed_meat) or not placed_meat.flip():
+		return false
+	grill_changed.emit()
+	_update_indicator()
+	return true
+
+
+func discard_burned_meat(placed_meat: GrillMeat) -> bool:
+	if not current_placed_meat.has(placed_meat):
+		return false
+	if placed_meat.cook_state != GrillMeat.CookState.BURNED:
+		return false
+	current_placed_meat.erase(placed_meat)
+	if is_instance_valid(placed_meat.sprite):
+		placed_meat.sprite.queue_free()
 	grill_changed.emit()
 	_update_indicator()
 	return true

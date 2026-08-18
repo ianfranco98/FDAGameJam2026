@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Meat" format=3]
+[gd_resource type="Resource" script_class="Meat" format=3 uid="uid://dpride3ldn3s7"]
 
 [ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="1_meat"]
 [ext_resource type="Texture2D" uid="uid://bkuut5y3i882w" path="res://assets/placeholders/meat.svg" id="2_texture"]
@@ -9,6 +9,9 @@ meat_type = 2
 display_name = "Tira de Asado"
 raw_texture = ExtResource("2_texture")
 cooked_texture = ExtResource("2_texture")
-cooking_duration = 8.0
+half_cooked_texture = ExtResource("2_texture")
+burned_texture = ExtResource("2_texture")
+first_side_duration = 3.0
+second_side_duration = 3.0
 max_wait_time = 18.0
 metadata/_custom_type_script = "uid://d2mgufc8y8sd8"

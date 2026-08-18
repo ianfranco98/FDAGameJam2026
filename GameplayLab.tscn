@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c4hi1a6i08epf" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
 [ext_resource type="Resource" uid="uid://cqp0a7ma5ti2v" path="res://scripts/entities/TestMeat.tres" id="9_5kvol"]
 [ext_resource type="PackedScene" uid="uid://u0qrmolvv2qn" path="res://scenes/ui/cooking_minigame.tscn" id="9_minigame"]
-[ext_resource type="Resource" path="res://scripts/entities/TestTiraAsado.tres" id="10_tira_asado"]
+[ext_resource type="Resource" uid="uid://dpride3ldn3s7" path="res://scripts/entities/TestTiraAsado.tres" id="10_tira_asado"]
 
 [node name="GameplayLab" type="Node2D" unique_id=2111630056]
 script = ExtResource("1_script")
@@ -86,7 +86,7 @@ interaction_label = "Interactuar"
 position = Vector2(282, 452)
 
 [node name="Fernet" parent="Entities" unique_id=1191953493 instance=ExtResource("6_fernet")]
-position = Vector2(467, 347)
+position = Vector2(445, 463)
 interaction_label = "Interactuar"
 
 [node name="FernetCraftTable" parent="Entities" unique_id=2018137713 instance=ExtResource("7_fernet_table")]
