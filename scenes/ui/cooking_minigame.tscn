@@ -53,8 +53,6 @@ layout_mode = 2
 text = "Esperando una pieza de carne..."
 horizontal_alignment = 1
 
-[node name="Pending" type="Label" parent="Content/Margin/VBox" unique_id=1965913432]
+[node name="MeatList" type="VBoxContainer" parent="Content/Margin/VBox" unique_id=1965913432]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.72, 0.72, 0.72, 1)
-text = "Panel visual — lógica pendiente"
-horizontal_alignment = 1
+theme_override_constants/separation = 4

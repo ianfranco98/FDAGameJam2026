@@ -7,10 +7,10 @@ func can_interact(player: Player) -> bool:
 
 
 func interact(player: Player) -> void:
-
-	for order in GameState.current_orders:
-		if !order.existing_meat_in_game:
-			player.set_held_item(Player.HeldItem.RAW_MEAT)
-			player.notify("Tomaste una pieza de carne cruda.")
-			order.existing_meat_in_game = true
-			super.interact(player)
+	var order := GameState.claim_available_order()
+	if order == null:
+		player.notify("No hay pedidos pendientes para preparar.")
+		return
+	player.hold_raw_meat(order)
+	player.notify("Tomaste carne cruda de %s." % order.meat.get_display_name())
+	super.interact(player)

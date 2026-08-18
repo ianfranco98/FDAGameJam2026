@@ -1,6 +1,12 @@
 class_name Player
 extends Character
 
+const FERNET_TEXTURE: Texture2D = preload("res://assets/placeholders/fernet.svg")
+const RAW_MEAT_MODULATE := Color.WHITE
+const COOKED_MEAT_MODULATE := Color(1.0, 0.62, 0.32)
+const EMPTY_FERNET_MODULATE := Color(0.62, 0.62, 0.62, 0.55)
+const READY_FERNET_MODULATE := Color(1.0, 0.88, 0.48)
+
 signal held_item_changed(item_name: String)
 signal interaction_changed(prompt: String)
 signal message_requested(message: String)
@@ -20,6 +26,9 @@ enum HeldItem {
 var held_item: HeldItem = HeldItem.NONE
 var fernet: Fernet
 var held_meat: Meat.Type = Meat.Type.Invalid
+var held_meat_order: MeatOrder
+
+@onready var held_item_visual: Sprite2D = $HeldItemVisual
 
 var _nearby_interactables: Array[InteractableObject] = []
 var _current_interactable: InteractableObject
@@ -29,6 +38,7 @@ func _ready() -> void:
 	super._ready()
 	area_overlap_started.connect(_on_character_overlap_started)
 	area_overlap_ended.connect(_on_character_overlap_ended)
+	_refresh_held_item_visual()
 	held_item_changed.emit(get_held_item_name())
 
 
@@ -51,14 +61,63 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func set_held_item(new_item: HeldItem) -> void:
 	held_item = new_item
+	_refresh_held_item_visual()
 	held_item_changed.emit(get_held_item_name())
 	_refresh_current_interactable(true)
+
+
+func hold_raw_meat(order: MeatOrder) -> void:
+	held_meat_order = order
+	held_meat = order.meat_type
+	set_held_item(HeldItem.RAW_MEAT)
+
+
+func hold_cooked_meat(order: MeatOrder) -> void:
+	held_meat_order = order
+	held_meat = order.meat_type
+	set_held_item(HeldItem.COOKED_MEAT)
+
+
+func clear_held_meat() -> void:
+	held_meat_order = null
+	held_meat = Meat.Type.Invalid
+	set_held_item(HeldItem.NONE)
+
+
+func _refresh_held_item_visual() -> void:
+	held_item_visual.texture = null
+	held_item_visual.visible = false
+	held_item_visual.modulate = Color.WHITE
+
+	match held_item:
+		HeldItem.RAW_MEAT:
+			if held_meat_order == null or held_meat_order.meat == null:
+				return
+			held_item_visual.texture = held_meat_order.meat.get_raw_texture()
+			held_item_visual.modulate = RAW_MEAT_MODULATE
+		HeldItem.COOKED_MEAT:
+			if held_meat_order == null or held_meat_order.meat == null:
+				return
+			held_item_visual.texture = held_meat_order.meat.get_cooked_texture()
+			held_item_visual.modulate = COOKED_MEAT_MODULATE
+		HeldItem.EMPTY_FERNET:
+			held_item_visual.texture = FERNET_TEXTURE
+			held_item_visual.modulate = EMPTY_FERNET_MODULATE
+		HeldItem.READY_FERNET:
+			held_item_visual.texture = FERNET_TEXTURE
+			held_item_visual.modulate = READY_FERNET_MODULATE
+		_:
+			return
+
+	held_item_visual.visible = held_item_visual.texture != null
 
 
 func get_held_item_name() -> String:
 	match held_item:
 		HeldItem.RAW_MEAT:
-			return "Carne cruda"
+			return "Carne cruda (%s)" % held_meat_order.meat.get_display_name()
+		HeldItem.COOKED_MEAT:
+			return "Carne cocida (%s)" % held_meat_order.meat.get_display_name()
 		HeldItem.EMPTY_FERNET:
 			return "Vaso de Fernet vacío"
 		HeldItem.READY_FERNET:

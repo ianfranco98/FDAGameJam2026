@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" path="res://scenes/entities/fernet.tscn" id="6_fernet"]
 [ext_resource type="PackedScene" path="res://scenes/entities/fernet_craft_table.tscn" id="7_fernet_table"]
 [ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="8_knb0c"]
-[ext_resource type="PackedScene" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
+[ext_resource type="PackedScene" uid="uid://c4hi1a6i08epf" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
 [ext_resource type="Resource" uid="uid://cqp0a7ma5ti2v" path="res://scripts/entities/TestMeat.tres" id="9_5kvol"]
 [ext_resource type="PackedScene" uid="uid://u0qrmolvv2qn" path="res://scenes/ui/cooking_minigame.tscn" id="9_minigame"]
+[ext_resource type="Resource" path="res://scripts/entities/TestTiraAsado.tres" id="10_tira_asado"]
 
 [node name="GameplayLab" type="Node2D" unique_id=2111630056]
 script = ExtResource("1_script")
@@ -98,7 +99,35 @@ interaction_label = "Interactuar"
 
 [node name="NPC" parent="Entities" unique_id=1204504510 instance=ExtResource("3_npc")]
 position = Vector2(760, 576)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol")])
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
+
+[node name="NPC2" parent="Entities" unique_id=56917356 instance=ExtResource("3_npc")]
+position = Vector2(760, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
+
+[node name="NPC3" parent="Entities" unique_id=1648945616 instance=ExtResource("3_npc")]
+position = Vector2(881, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
+
+[node name="NPC4" parent="Entities" unique_id=1612160690 instance=ExtResource("3_npc")]
+position = Vector2(881, 576)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
+
+[node name="NPC5" parent="Entities" unique_id=1208153539 instance=ExtResource("3_npc")]
+position = Vector2(990, 576)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
+
+[node name="NPC6" parent="Entities" unique_id=2113772787 instance=ExtResource("3_npc")]
+position = Vector2(990, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
+
+[node name="NPC7" parent="Entities" unique_id=672465049 instance=ExtResource("3_npc")]
+position = Vector2(1095, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
+
+[node name="NPC8" parent="Entities" unique_id=1523407276 instance=ExtResource("3_npc")]
+position = Vector2(1095, 574)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
 
 [node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]
 position = Vector2(322, 505)

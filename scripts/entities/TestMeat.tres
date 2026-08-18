@@ -1,8 +1,14 @@
 [gd_resource type="Resource" script_class="Meat" format=3 uid="uid://cqp0a7ma5ti2v"]
 
 [ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="1_uh1k6"]
+[ext_resource type="Texture2D" uid="uid://bkuut5y3i882w" path="res://assets/placeholders/meat.svg" id="2_meat"]
 
 [resource]
 script = ExtResource("1_uh1k6")
 meat_type = 1
+display_name = "Chorizo"
+raw_texture = ExtResource("2_meat")
+cooked_texture = ExtResource("2_meat")
+cooking_duration = 5.0
+max_wait_time = 15.0
 metadata/_custom_type_script = "uid://d2mgufc8y8sd8"

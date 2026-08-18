@@ -20,14 +20,14 @@ func _ready() -> void:
 	player.interaction_changed.connect(_on_interaction_changed)
 	player.message_requested.connect(_show_message)
 	fernet.usages_changed.connect(_on_fernet_usages_changed)
-	grill.meat_placed.connect(cooking_minigame.show_meat_placed)
+	cooking_minigame.configure(grill, player)
 	GameState.anger_changed.connect(_on_anger_changed)
 	message_timer.timeout.connect(_on_message_timer_timeout)
 
 	_on_anger_changed(GameState.anger, GameState.max_anger)
 	_on_held_item_changed(player.get_held_item_name())
 	_on_fernet_usages_changed(fernet.usages_left, fernet.max_usages)
-	_show_message("A/D: mover | E: interactuar | F: tomar Fernet")
+	_show_message("A/D: mover | E: interactuar | Retirá carne lista desde el panel de parrilla")
 
 
 func _on_anger_changed(current: float, maximum: float) -> void:

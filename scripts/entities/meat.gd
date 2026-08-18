@@ -1,6 +1,7 @@
 class_name Meat extends Resource
 
-# represents a meat order
+## Definición inmutable de un corte. Se configura desde un .tres y se comparte
+## entre la orden, la parrilla y las interfaces.
 
 enum Type {
 	Invalid,
@@ -12,14 +13,22 @@ enum Type {
 }
 
 @export var meat_type: Type = Type.Invalid
-@export var MaxWaitTime: float = 15.0
+@export var display_name: String = ""
+@export var raw_texture: Texture2D
+@export var cooked_texture: Texture2D
+@export_range(0.5, 30.0, 0.5) var cooking_duration: float = 5.0
+@export var max_wait_time: float = 15.0
 
-var existing_meat_in_game: bool = false
-var timer_ref: SceneTreeTimer = null
 
-func start_timer() -> SceneTreeTimer:
-	timer_ref = GameState.get_tree().create_timer(MaxWaitTime)
-	return timer_ref
+func get_display_name() -> String:
+	if not display_name.is_empty():
+		return display_name
+	return Type.keys()[meat_type].capitalize()
 
-func kill_timer():
-	timer_ref.delete()
+
+func get_raw_texture() -> Texture2D:
+	return raw_texture if raw_texture != null else cooked_texture
+
+
+func get_cooked_texture() -> Texture2D:
+	return cooked_texture if cooked_texture != null else raw_texture

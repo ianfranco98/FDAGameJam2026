@@ -3,19 +3,16 @@ extends InteractableObject
 
 
 func interact(player: Player) -> void:
-	#player.notify("Los pedidos todavía no están implementados.")
 	if player.held_item != Player.HeldItem.COOKED_MEAT:
+		player.notify("Necesitás una carne cocida para servir.")
 		return
-		
-	for order in GameState.current_orders:
-		if order.meat_type == player.held_meat:
-			serve_meat(player)
-			GameState.active_timers.erase(order.timer_ref)
-			GameState.current_orders.erase(order)
-			player.notify("Chori servido :D")
-			
+	if not GameState.complete_order(player.held_meat_order):
+		player.notify("Ese pedido ya no está activo.")
+		return
+	var served_name := player.held_meat_order.meat.get_display_name()
+	serve_meat(player)
+	player.notify("Serviste %s. ¡Pedido completado!" % served_name)
 	super.interact(player)
 
 func serve_meat(player: Player):
-	player.held_meat = Meat.Type.Invalid
-	player.held_item = Player.HeldItem.NONE
+	player.clear_held_meat()

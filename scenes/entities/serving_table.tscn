@@ -1,28 +1,28 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://c4hi1a6i08epf"]
 
-[ext_resource type="Script" path="res://scripts/entities/serving_table.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/placeholders/serving_table.svg" id="2_texture"]
+[ext_resource type="Script" uid="uid://k382hdgs3k8x" path="res://scripts/entities/serving_table.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://d0y7yagg872tj" path="res://assets/placeholders/serving_table.svg" id="2_texture"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_interaction"]
 radius = 90.0
 
-[node name="ServingTable" type="Node2D"]
+[node name="ServingTable" type="Node2D" unique_id=1376676291]
 script = ExtResource("1_script")
 interaction_label = "Servir pedido"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=149337269]
+visible = false
 position = Vector2(0, -43)
 texture = ExtResource("2_texture")
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=357743556]
 position = Vector2(0, -38)
 collision_layer = 2
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1396479231]
 shape = SubResource("CircleShape_interaction")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=450703397]
 offset_left = -62.0
 offset_top = -120.0
 offset_right = 62.0
