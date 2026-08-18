@@ -11,13 +11,21 @@ config_version=5
 [application]
 
 config/name="AsadoArgentoJam2026"
-run/main_scene="res://GameplayLab.tscn"
+run/main_scene="res://menues/scenes/opening/opening.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://c3v8urmg02vxi"
 
 [autoload]
 
 GameState="*res://scripts/core/game_state.gd"
+AppConfig="*uid://cjke6crjg14a0"
+SceneLoader="*uid://cbwmrnp0af35y"
+ProjectMusicController="*uid://r5t485lr3p7t"
+ProjectUISoundController="*uid://cc37235kj4384"
 
 [display]
 
@@ -26,6 +34,10 @@ window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/maaacks_menus_template/plugin.cfg")
 
 [input]
 
@@ -55,11 +67,22 @@ parry={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_menus_template/base/translations/menus_translations.fr.translation")
+
 [layer_names]
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Interactable"
 2d_physics/layer_3="NPC"
+
+[maaacks_menus_template]
+
+disable_install_audio_busses=true
+disable_update_check=false
+disable_install_wizard=true
+copy_path="res://menues/"
 
 [physics]
 
