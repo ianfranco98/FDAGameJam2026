@@ -32,10 +32,12 @@ var held_meat_order: MeatOrder
 
 var _nearby_interactables: Array[InteractableObject] = []
 var _current_interactable: InteractableObject
+var _minigame_input_active: bool = false
 
 
 func _ready() -> void:
 	super._ready()
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	area_overlap_started.connect(_on_character_overlap_started)
 	area_overlap_ended.connect(_on_character_overlap_ended)
 	_refresh_held_item_visual()
@@ -43,13 +45,17 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var direction := Input.get_axis("move_left", "move_right")
+	var direction := 0.0
+	if not _minigame_input_active:
+		direction = Input.get_axis("move_left", "move_right")
 	position.x = clampf(position.x + direction * move_speed * delta, min_x, max_x)
 	animated_sprite.flip_h = direction < 0.0 if direction != 0.0 else animated_sprite.flip_h
 	_refresh_current_interactable()
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _minigame_input_active:
+		return
 	if event.is_action_pressed("interact"):
 		_try_interact()
 		get_viewport().set_input_as_handled()
@@ -57,6 +63,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if is_instance_valid(fernet):
 			fernet.try_consume(self)
 		get_viewport().set_input_as_handled()
+
+
+func set_minigame_input_active(active: bool) -> void:
+	_minigame_input_active = active
 
 
 func set_held_item(new_item: HeldItem) -> void:

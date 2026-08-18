@@ -20,6 +20,7 @@ func _ready() -> void:
 	player.interaction_changed.connect(_on_interaction_changed)
 	player.message_requested.connect(_show_message)
 	fernet.usages_changed.connect(_on_fernet_usages_changed)
+	grill.interacted.connect(_on_grill_interacted)
 	cooking_minigame.configure(grill, player)
 	GameState.anger_changed.connect(_on_anger_changed)
 	message_timer.timeout.connect(_on_message_timer_timeout)
@@ -46,6 +47,10 @@ func _on_fernet_usages_changed(current: int, maximum: int) -> void:
 
 func _on_interaction_changed(prompt: String) -> void:
 	interaction_prompt.text = prompt
+
+
+func _on_grill_interacted(interacting_player: Player) -> void:
+	cooking_minigame.enter(interacting_player)
 
 
 func _show_message(message: String) -> void:

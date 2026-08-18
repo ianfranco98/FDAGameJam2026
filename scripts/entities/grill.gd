@@ -29,9 +29,14 @@ func _process(delta: float) -> void:
 
 
 func can_interact(player: Player) -> bool:
-	return player.held_item == Player.HeldItem.RAW_MEAT
+	return player.held_item == Player.HeldItem.NONE \
+		or player.held_item == Player.HeldItem.RAW_MEAT
+
 
 func interact(player: Player) -> void:
+	if player.held_item == Player.HeldItem.NONE:
+		super.interact(player)
+		return
 	if player.held_item != Player.HeldItem.RAW_MEAT or player.held_meat_order == null:
 		player.notify("Llevá carne cruda para ponerla en la parrilla.")
 		return

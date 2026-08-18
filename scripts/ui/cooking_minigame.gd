@@ -9,7 +9,7 @@ var player: Player
 
 
 func _ready() -> void:
-	open()
+	super._ready()
 
 
 func configure(source_grill: Grill, source_player: Player) -> void:
