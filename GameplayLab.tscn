@@ -2,16 +2,30 @@
 
 [ext_resource type="Script" uid="uid://42ra35msfqse" path="res://scripts/gameplay_lab.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://cdrx467pqcebk" path="res://scenes/entities/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" path="res://scenes/entities/npc.tscn" id="3_npc"]
-[ext_resource type="PackedScene" path="res://scenes/entities/meat_desk.tscn" id="4_meat_desk"]
+[ext_resource type="PackedScene" uid="uid://bx6t43rs67awb" path="res://scenes/entities/npc.tscn" id="3_npc"]
+[ext_resource type="PackedScene" uid="uid://ca1nuhul6ngnn" path="res://scenes/entities/meat_desk.tscn" id="4_meat_desk"]
 [ext_resource type="PackedScene" uid="uid://cqwm504skrohg" path="res://scenes/entities/grill.tscn" id="5_grill"]
-[ext_resource type="PackedScene" path="res://scenes/entities/fernet.tscn" id="6_fernet"]
+[ext_resource type="PackedScene" uid="uid://b203800q6gsi1" path="res://scenes/entities/fernet.tscn" id="6_fernet"]
 [ext_resource type="PackedScene" path="res://scenes/entities/fernet_craft_table.tscn" id="7_fernet_table"]
 [ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="8_knb0c"]
 [ext_resource type="PackedScene" uid="uid://c4hi1a6i08epf" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
 [ext_resource type="Resource" uid="uid://cqp0a7ma5ti2v" path="res://scripts/entities/TestMeat.tres" id="9_5kvol"]
 [ext_resource type="PackedScene" uid="uid://u0qrmolvv2qn" path="res://scenes/ui/cooking_minigame.tscn" id="9_minigame"]
 [ext_resource type="Resource" uid="uid://dpride3ldn3s7" path="res://scripts/entities/TestTiraAsado.tres" id="10_tira_asado"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_qte_key"]
+bg_color = Color(0.964706, 0.901961, 0.686275, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.176471, 0.121569, 0.0784314, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 8
 
 [node name="GameplayLab" type="Node2D" unique_id=2111630056]
 script = ExtResource("1_script")
@@ -49,16 +63,6 @@ offset_bottom = 500.0
 mouse_filter = 2
 color = Color(0.772549, 0.611765, 0.321569, 0.65)
 
-[node name="Title" type="Label" parent="." unique_id=119368781]
-offset_left = 458.0
-offset_top = 12.0
-offset_right = 822.0
-offset_bottom = 50.0
-theme_override_colors/font_color = Color(1, 0.901961, 0.658824, 1)
-theme_override_font_sizes/font_size = 26
-text = "ASADO ARGENTO — GAMEPLAY LAB"
-horizontal_alignment = 1
-
 [node name="GuestTable" type="ColorRect" parent="." unique_id=391145268]
 z_index = -5
 offset_left = 560.0
@@ -67,14 +71,6 @@ offset_right = 1281.975
 offset_bottom = 541.63
 mouse_filter = 2
 color = Color(0.552941, 0.337255, 0.180392, 1)
-
-[node name="GuestTableLabel" type="Label" parent="." unique_id=1762015204]
-offset_left = 749.0
-offset_top = 415.0
-offset_right = 969.0
-offset_bottom = 443.0
-text = "Mesa de invitados"
-horizontal_alignment = 1
 
 [node name="Entities" type="Node2D" parent="." unique_id=241066293]
 
@@ -188,6 +184,46 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 
+[node name="QTEPrompt" type="Control" parent="HUD" unique_id=2114847147]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SpaceKey" type="PanelContainer" parent="HUD/QTEPrompt" unique_id=663972721]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -124.0
+offset_right = 120.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBox_qte_key")
+
+[node name="Label" type="Label" parent="HUD/QTEPrompt/SpaceKey" unique_id=561368800]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.176471, 0.121569, 0.0784314, 1)
+theme_override_font_sizes/font_size = 28
+text = "ESPACIO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MessageTimer" type="Timer" parent="." unique_id=243238414]
 wait_time = 3.0
+one_shot = true
+
+[node name="QTETimer" type="Timer" parent="." unique_id=242262344]
+one_shot = true
+
+[node name="PenaltyTimer" type="Timer" parent="." unique_id=235548926]
 one_shot = true

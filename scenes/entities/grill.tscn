@@ -26,11 +26,3 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1195046372]
 shape = SubResource("CircleShape_interaction")
-
-[node name="Label" type="Label" parent="." unique_id=1538960110]
-offset_left = -40.0
-offset_top = -113.0
-offset_right = 40.0
-offset_bottom = -90.0
-text = "Parrilla"
-horizontal_alignment = 1

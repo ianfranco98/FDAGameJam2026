@@ -1,36 +1,46 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://bx6t43rs67awb"]
 
-[ext_resource type="Script" path="res://scripts/entities/npc.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/placeholders/npc.svg" id="2_texture"]
+[ext_resource type="Script" uid="uid://b2m3gaamkpgqc" path="res://scripts/entities/npc.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://hwr55yr5ig4" path="res://assets/placeholders/npc.svg" id="2_texture"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_npc"]
 animations = [{
-"frames": [{"duration": 1.0, "texture": ExtResource("2_texture")}],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_texture")
+}],
+"loop": 1,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_texture")
+}],
+"loop": 0,
+"name": &"stand_up",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape_npc"]
 radius = 34.0
 
-[node name="NPC" type="Node2D"]
+[node name="NPC" type="Node2D" unique_id=435966552]
 script = ExtResource("1_script")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=526607906]
 position = Vector2(0, -48)
 sprite_frames = SubResource("SpriteFrames_npc")
-animation = &"default"
 
-[node name="CharacterArea" type="Area2D" parent="."]
+[node name="CharacterArea" type="Area2D" parent="." unique_id=1280104191]
 position = Vector2(0, -38)
 collision_layer = 4
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterArea" unique_id=513933443]
 shape = SubResource("CircleShape_npc")
 
-[node name="StateLabel" type="Label" parent="."]
+[node name="StateLabel" type="Label" parent="." unique_id=199641223]
+visible = false
 offset_left = -43.0
 offset_top = -112.0
 offset_right = 44.0
@@ -38,15 +48,17 @@ offset_bottom = -89.0
 text = "NPC: SEATED"
 horizontal_alignment = 1
 
-[node name="OrderWidget" type="Control" parent="."]
+[node name="OrderWidget" type="Control" parent="." unique_id=573044052]
 visible = false
-mouse_filter = 2
+layout_mode = 3
+anchors_preset = 0
 offset_left = -74.0
 offset_top = -210.0
 offset_right = 74.0
 offset_bottom = -128.0
+mouse_filter = 2
 
-[node name="VBox" type="VBoxContainer" parent="OrderWidget"]
+[node name="VBox" type="VBoxContainer" parent="OrderWidget" unique_id=1809543958]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,21 +67,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 2
 
-[node name="OrderIcon" type="TextureRect" parent="OrderWidget/VBox"]
+[node name="OrderIcon" type="TextureRect" parent="OrderWidget/VBox" unique_id=601954134]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture_filter = 1
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OrderLabel" type="Label" parent="OrderWidget/VBox"]
+[node name="OrderLabel" type="Label" parent="OrderWidget/VBox" unique_id=319317575]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.894118, 0.486275, 1)
 theme_override_font_sizes/font_size = 14
 text = "Pedido"
 horizontal_alignment = 1
 
-[node name="OrderTimerBar" type="ProgressBar" parent="OrderWidget/VBox"]
+[node name="OrderTimerBar" type="ProgressBar" parent="OrderWidget/VBox" unique_id=2009655230]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 show_percentage = false
