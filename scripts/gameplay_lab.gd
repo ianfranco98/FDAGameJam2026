@@ -26,6 +26,7 @@ var _active_npc: NPC
 
 
 func _ready() -> void:
+	GameState.reset_game()
 	player.fernet = fernet
 	player.held_item_changed.connect(_on_held_item_changed)
 	player.interaction_changed.connect(_on_interaction_changed)
@@ -34,6 +35,7 @@ func _ready() -> void:
 	grill.interacted.connect(_on_grill_interacted)
 	cooking_minigame.configure(grill, player)
 	GameState.anger_changed.connect(_on_anger_changed)
+	GameState.game_won.connect(_on_game_won)
 	GameState.game_lost.connect(_on_game_lost)
 	retry_button.pressed.connect(_on_retry_button_pressed)
 	message_timer.timeout.connect(_on_message_timer_timeout)
@@ -143,6 +145,11 @@ func _on_game_lost() -> void:
 	lose_popup.visible = true
 	retry_button.grab_focus()
 	get_tree().paused = true
+
+
+func _on_game_won() -> void:
+	cooking_minigame.exit()
+	SceneLoader.load_scene(SceneLoader.WINNING_SCREEN_SCENE_PATH)
 
 
 func _on_retry_button_pressed() -> void:

@@ -80,6 +80,8 @@ func generate_order(npc: NPC) -> bool:
 func check_win_condition() -> void:
 	if has_won or has_lost:
 		return
+	if not current_orders.is_empty():
+		return
 	var npc_nodes := get_tree().get_nodes_in_group("NPC")
 	if npc_nodes.is_empty():
 		return
@@ -105,6 +107,7 @@ func complete_order(order: MeatOrder) -> bool:
 	order.state = MeatOrder.State.COMPLETED
 	_remove_order(order)
 	order_completed.emit(order)
+	check_win_condition()
 	return true
 
 

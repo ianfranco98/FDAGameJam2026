@@ -107,36 +107,8 @@ interaction_label = "Interactuar"
 position = Vector2(607, 508)
 interaction_label = "Interactuar"
 
-[node name="NPC" parent="Entities" unique_id=1204504510 instance=ExtResource("3_npc")]
-position = Vector2(760, 576)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
-
 [node name="NPC2" parent="Entities" unique_id=56917356 instance=ExtResource("3_npc")]
 position = Vector2(760, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
-
-[node name="NPC3" parent="Entities" unique_id=1648945616 instance=ExtResource("3_npc")]
-position = Vector2(881, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
-
-[node name="NPC4" parent="Entities" unique_id=1612160690 instance=ExtResource("3_npc")]
-position = Vector2(881, 576)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
-
-[node name="NPC5" parent="Entities" unique_id=1208153539 instance=ExtResource("3_npc")]
-position = Vector2(990, 576)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
-
-[node name="NPC6" parent="Entities" unique_id=2113772787 instance=ExtResource("3_npc")]
-position = Vector2(990, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
-
-[node name="NPC7" parent="Entities" unique_id=672465049 instance=ExtResource("3_npc")]
-position = Vector2(1095, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
-
-[node name="NPC8" parent="Entities" unique_id=1523407276 instance=ExtResource("3_npc")]
-position = Vector2(1095, 574)
 available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
 
 [node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]

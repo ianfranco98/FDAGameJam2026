@@ -106,12 +106,10 @@ func _on_order_finished(order: MeatOrder) -> void:
 
 func request_order() -> bool:
 	if order_counter >= available_orders.size():
-		GameState.check_win_condition()
 		return false
 	if not GameState.generate_order(self):
 		return false
 	order_counter += 1
-	GameState.check_win_condition()
 	return true
 
 
