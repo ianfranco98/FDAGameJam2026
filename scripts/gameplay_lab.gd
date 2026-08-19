@@ -14,6 +14,8 @@ extends Node2D
 @onready var interaction_prompt: Label = $HUD/InteractionPrompt
 @onready var message_label: Label = $HUD/Message
 @onready var qte_prompt: Control = $HUD/QTEPrompt
+@onready var lose_popup: Control = $HUD/LosePopup
+@onready var retry_button: Button = $HUD/LosePopup/Center/Panel/Margin/VBox/RetryButton
 @onready var message_timer: Timer = $MessageTimer
 @onready var qte_timer: Timer = $QTETimer
 @onready var penalty_timer: Timer = $PenaltyTimer
@@ -32,6 +34,8 @@ func _ready() -> void:
 	grill.interacted.connect(_on_grill_interacted)
 	cooking_minigame.configure(grill, player)
 	GameState.anger_changed.connect(_on_anger_changed)
+	GameState.game_lost.connect(_on_game_lost)
+	retry_button.pressed.connect(_on_retry_button_pressed)
 	message_timer.timeout.connect(_on_message_timer_timeout)
 	qte_timer.timeout.connect(_on_qte_timer_timeout)
 	penalty_timer.timeout.connect(_on_penalty_timer_timeout)
@@ -40,6 +44,7 @@ func _ready() -> void:
 		if npc != null:
 			npc.annoyance_collision.connect(_on_npc_annoyance_collision.bind(npc))
 	qte_prompt.visible = false
+	lose_popup.visible = false
 
 	_on_anger_changed(GameState.anger, GameState.max_anger)
 	_on_held_item_changed(player.get_held_item_name())
@@ -118,6 +123,8 @@ func _on_qte_timer_timeout() -> void:
 	qte_prompt.visible = false
 	if is_instance_valid(_active_npc):
 		GameState.add_anger(_active_npc.failure_anger_amount)
+		if GameState.has_lost:
+			return
 		penalty_timer.start(maxf(_active_npc.failure_stun_duration, 0.01))
 		_active_npc.return_to_seat()
 	else:
@@ -128,3 +135,20 @@ func _on_penalty_timer_timeout() -> void:
 	player.set_controls_locked(false)
 	_active_npc = null
 	_event_in_progress = false
+
+
+func _on_game_lost() -> void:
+	cooking_minigame.exit()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	lose_popup.visible = true
+	retry_button.grab_focus()
+	get_tree().paused = true
+
+
+func _on_retry_button_pressed() -> void:
+	lose_popup.visible = false
+	GameState.reset_game()
+	get_tree().paused = false
+	var reload_error := get_tree().reload_current_scene()
+	if reload_error != OK:
+		push_error("No se pudo reiniciar la escena actual: %s" % error_string(reload_error))

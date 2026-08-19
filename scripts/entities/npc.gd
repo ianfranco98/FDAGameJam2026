@@ -26,10 +26,12 @@ const STAND_UP_ANIMATION: StringName = &"stand_up"
 @export var available_orders: Array[Meat]
 
 @export var events_enabled: bool = false
+@export_range(0.0, 30.0, 0.1, "suffix:s") var next_order_delay: float = 3.0
 @export_range(0.0, 30.0, 0.1, "suffix:s") var failure_stun_duration: float = 3.0
 @export_range(0.0, 100.0, 1.0) var failure_anger_amount: float = 10.0
 var state: State = State.SEATED
 var current_order: MeatOrder
+var order_counter: int = 0
 var _initial_global_position: Vector2
 var _approach_phase: ApproachPhase = ApproachPhase.IDLE
 var _approach_sequence_id: int = 0
@@ -38,6 +40,7 @@ var _approach_sequence_id: int = 0
 @onready var order_icon: TextureRect = $OrderWidget/VBox/OrderIcon
 @onready var order_label: Label = $OrderWidget/VBox/OrderLabel
 @onready var order_timer_bar: ProgressBar = $OrderWidget/VBox/OrderTimerBar
+@onready var next_order_timer: Timer = $NextOrderTimer
 
 
 func _ready() -> void:
@@ -47,16 +50,17 @@ func _ready() -> void:
 	GameState.order_created.connect(_on_order_created)
 	GameState.order_completed.connect(_on_order_finished)
 	GameState.order_expired.connect(_on_order_finished)
+	next_order_timer.timeout.connect(_on_next_order_timer_timeout)
 	order_widget.visible = false
 	add_to_group("NPC")
 		
 	# code snippet just to test orders 
 	var rand_time: int = 3 + (randi() % 2)
-	await get_tree().create_timer(rand_time).timeout
-	GameState.generate_order(self)
+	await get_tree().create_timer(rand_time, false).timeout
+	request_order()
 
 	var approach_test_delay := randf_range(1.0, 3.0)
-	await get_tree().create_timer(approach_test_delay).timeout
+	await get_tree().create_timer(approach_test_delay, false).timeout
 	test_activate_approach()
 
 
@@ -96,6 +100,23 @@ func _on_order_finished(order: MeatOrder) -> void:
 		return
 	current_order = null
 	order_widget.visible = false
+	if order_counter < available_orders.size() and not GameState.has_lost:
+		next_order_timer.start(maxf(next_order_delay, 0.01))
+
+
+func request_order() -> bool:
+	if order_counter >= available_orders.size():
+		GameState.check_win_condition()
+		return false
+	if not GameState.generate_order(self):
+		return false
+	order_counter += 1
+	GameState.check_win_condition()
+	return true
+
+
+func _on_next_order_timer_timeout() -> void:
+	request_order()
 
 
 func set_state(new_state: State) -> void:
