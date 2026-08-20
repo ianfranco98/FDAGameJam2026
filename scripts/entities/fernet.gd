@@ -15,6 +15,7 @@ var is_picked_up: bool = false
 func _ready() -> void:
 	usages_left = max_usages
 	_refresh_sprite()
+
 	usages_changed.emit(usages_left, max_usages)
 
 
