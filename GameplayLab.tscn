@@ -139,7 +139,7 @@ next_order_delay = 4.0
 failure_anger_amount = 17.0
 
 [node name="NPCGymBro" parent="Entities" unique_id=844357468 instance=ExtResource("14_fh2tn")]
-position = Vector2(724, 559)
+position = Vector2(725, 559)
 
 [node name="NPCDumbo" parent="Entities" unique_id=577103773 instance=ExtResource("14_bcham")]
 position = Vector2(724, 559)
