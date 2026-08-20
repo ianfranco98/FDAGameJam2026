@@ -33,10 +33,12 @@ var held_meat_order: MeatOrder
 var _nearby_interactables: Array[InteractableObject] = []
 var _current_interactable: InteractableObject
 var _minigame_input_active: bool = false
+var _controls_locked: bool = false
 
 
 func _ready() -> void:
 	super._ready()
+	add_to_group("Player")
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	area_overlap_started.connect(_on_character_overlap_started)
 	area_overlap_ended.connect(_on_character_overlap_ended)
@@ -46,7 +48,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var direction := 0.0
-	if not _minigame_input_active:
+	if not _minigame_input_active and not _controls_locked:
 		direction = Input.get_axis("move_left", "move_right")
 	position.x = clampf(position.x + direction * move_speed * delta, min_x, max_x)
 	animated_sprite.flip_h = direction < 0.0 if direction != 0.0 else animated_sprite.flip_h
@@ -54,7 +56,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _minigame_input_active:
+	if _minigame_input_active or _controls_locked:
 		return
 	if event.is_action_pressed("interact"):
 		_try_interact()
@@ -67,6 +69,18 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func set_minigame_input_active(active: bool) -> void:
 	_minigame_input_active = active
+	_refresh_current_interactable(true)
+
+
+func set_controls_locked(locked: bool) -> void:
+	if _controls_locked == locked:
+		return
+	_controls_locked = locked
+	_refresh_current_interactable(true)
+
+
+func are_controls_locked() -> bool:
+	return _controls_locked
 
 
 func set_held_item(new_item: HeldItem) -> void:
@@ -193,6 +207,8 @@ func _refresh_current_interactable(force_prompt_update: bool = false) -> void:
 
 
 func _get_interaction_prompt() -> String:
+	if _controls_locked or _minigame_input_active:
+		return ""
 	if not is_instance_valid(_current_interactable):
 		return ""
 	if not _is_interaction_allowed(_current_interactable):

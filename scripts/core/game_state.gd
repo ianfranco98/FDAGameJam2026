@@ -4,20 +4,25 @@ signal anger_changed(current: float, maximum: float)
 signal order_created(order: MeatOrder)
 signal order_completed(order: MeatOrder)
 signal order_expired(order: MeatOrder)
+signal game_won
+signal game_lost
 
 @export var max_anger: float = 100.0
 @export var initial_anger: float = 50.0
+@export var npc_waypoint_speed: float = 200.0
+@export var npc_pursuit_speed: float = 300.0
 
 var current_orders: Array[MeatOrder] = []
 var active_timers: Array[SceneTreeTimer] = []
 
 var anger: float = 50.0
+var has_won: bool = false
+var has_lost: bool = false
 
 
 func _ready() -> void:
 	anger = clampf(initial_anger, 0.0, max_anger)
 	anger_changed.emit(anger, max_anger)
-	
 
 
 func add_anger(amount: float) -> void:
@@ -32,25 +37,60 @@ func reset_anger() -> void:
 	_set_anger(initial_anger)
 
 
+func reset_game() -> void:
+	current_orders.clear()
+	active_timers.clear()
+	has_won = false
+	has_lost = false
+	_set_anger(initial_anger)
+
+
 func _set_anger(value: float) -> void:
 	anger = clampf(value, 0.0, max_anger)
 	anger_changed.emit(anger, max_anger)
+	_check_lose_condition()
 
-func generate_order(npc: NPC) -> void:
+
+func generate_order(npc: NPC) -> bool:
+	if npc == null:
+		push_warning("No se puede generar una orden sin un NPC.")
+		return false
+	if has_lost:
+		return false
 	if npc.available_orders.is_empty():
 		push_warning("El NPC no tiene tipos de carne configurados.")
-		return
+		return false
+	if npc.order_counter >= npc.available_orders.size():
+		push_warning("El NPC ya alcanzó su límite de órdenes.")
+		return false
 	if npc.current_order != null:
 		push_warning("El NPC ya tiene una orden activa.")
-		return
+		return false
 	var requested_meat: Meat = npc.available_orders.pick_random()
 	var new_order := MeatOrder.new(requested_meat, npc)
 	current_orders.append(new_order)
-	new_order.timer = get_tree().create_timer(new_order.max_wait_time)
+	new_order.timer = get_tree().create_timer(new_order.max_wait_time, false)
 	active_timers.append(new_order.timer)
 	new_order.timer.timeout.connect(_expire_order.bind(new_order))
 	order_created.emit(new_order)
 	print("Orden generada: %s" % new_order.meat.get_display_name())
+	return true
+
+
+func check_win_condition() -> void:
+	if has_won or has_lost:
+		return
+	if not current_orders.is_empty():
+		return
+	var npc_nodes := get_tree().get_nodes_in_group("NPC")
+	if npc_nodes.is_empty():
+		return
+	for node in npc_nodes:
+		var npc := node as NPC
+		if npc == null or npc.order_counter < npc.available_orders.size():
+			return
+	has_won = true
+	game_won.emit()
 
 
 func claim_available_order() -> MeatOrder:
@@ -67,6 +107,7 @@ func complete_order(order: MeatOrder) -> bool:
 	order.state = MeatOrder.State.COMPLETED
 	_remove_order(order)
 	order_completed.emit(order)
+	check_win_condition()
 	return true
 
 
@@ -87,6 +128,13 @@ func _remove_order(order: MeatOrder) -> void:
 	current_orders.erase(order)
 	if order.timer != null:
 		active_timers.erase(order.timer)
+
+
+func _check_lose_condition() -> void:
+	if has_lost or has_won or anger < max_anger:
+		return
+	has_lost = true
+	game_lost.emit()
 
 
 func _has_meat_type_in_preparation(meat_type: Meat.Type) -> bool:

@@ -16,7 +16,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if is_active:
-		if event.is_action_pressed("interact"):
+		if event.is_action_pressed("interact") \
+				or event.is_action_pressed("move_left") \
+				or event.is_action_pressed("move_right"):
 			exit()
 			get_viewport().set_input_as_handled()
 		return
@@ -31,6 +33,7 @@ func enter(player: Player) -> void:
 	_player = player
 	_player.set_minigame_input_active(true)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.warp_mouse(content.get_global_rect().get_center())
 
 
 func exit() -> void:

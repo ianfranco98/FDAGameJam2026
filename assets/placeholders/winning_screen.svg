@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#274d55"/>
+      <stop offset="1" stop-color="#17261f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="38%" r="46%">
+      <stop offset="0" stop-color="#f6d56b" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#f6d56b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#sky)"/>
+  <rect width="1280" height="720" fill="url(#glow)"/>
+  <g fill="#f6d56b" opacity="0.9">
+    <circle cx="170" cy="150" r="9"/>
+    <circle cx="1080" cy="180" r="7"/>
+    <circle cx="980" cy="90" r="5"/>
+    <path d="M250 110l12 28 30 3-23 20 7 30-26-16-26 16 7-30-23-20 30-3z"/>
+    <path d="M1030 300l9 20 22 3-17 14 5 22-19-12-19 12 5-22-17-14 22-3z"/>
+  </g>
+  <g text-anchor="middle" font-family="sans-serif" fill="#f8ebc1">
+    <text x="640" y="285" font-size="82" font-weight="700" letter-spacing="8">¡VICTORIA!</text>
+    <text x="640" y="350" font-size="28" letter-spacing="3">IMAGEN FINAL PENDIENTE</text>
+  </g>
+  <path d="M410 415h460" stroke="#f6d56b" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+</svg>

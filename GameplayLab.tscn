@@ -2,15 +2,44 @@
 
 [ext_resource type="Script" uid="uid://42ra35msfqse" path="res://scripts/gameplay_lab.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://cdrx467pqcebk" path="res://scenes/entities/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" path="res://scenes/entities/npc.tscn" id="3_npc"]
+[ext_resource type="PackedScene" uid="uid://bx6t43rs67awb" path="res://scenes/entities/npc.tscn" id="3_npc"]
 [ext_resource type="PackedScene" uid="uid://ca1nuhul6ngnn" path="res://scenes/entities/meat_desk.tscn" id="4_meat_desk"]
 [ext_resource type="PackedScene" uid="uid://cqwm504skrohg" path="res://scenes/entities/grill.tscn" id="5_grill"]
-[ext_resource type="PackedScene" path="res://scenes/entities/fernet.tscn" id="6_fernet"]
-[ext_resource type="PackedScene" uid="uid://cqf6eyej0ql8b" path="res://scenes/entities/fernet_craft_table.tscn" id="7_fernet_table"]
+[ext_resource type="PackedScene" uid="uid://b203800q6gsi1" path="res://scenes/entities/fernet.tscn" id="6_fernet"]
+[ext_resource type="PackedScene" path="res://scenes/entities/fernet_craft_table.tscn" id="7_fernet_table"]
 [ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="8_knb0c"]
 [ext_resource type="PackedScene" uid="uid://c4hi1a6i08epf" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
+[ext_resource type="Resource" uid="uid://cqp0a7ma5ti2v" path="res://scripts/entities/TestMeat.tres" id="9_5kvol"]
 [ext_resource type="PackedScene" uid="uid://u0qrmolvv2qn" path="res://scenes/ui/cooking_minigame.tscn" id="9_minigame"]
-[ext_resource type="Resource" uid="uid://dpride3ldn3s7" path="res://scripts/entities/TestChori.tres" id="10_tira_asado"]
+[ext_resource type="Resource" uid="uid://dpride3ldn3s7" path="res://scripts/entities/TestTiraAsado.tres" id="10_tira_asado"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_qte_key"]
+bg_color = Color(0.964706, 0.901961, 0.686275, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.176471, 0.121569, 0.0784314, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_lose_popup"]
+bg_color = Color(0.176471, 0.121569, 0.0784314, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.964706, 0.901961, 0.686275, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 10
 
 [node name="GameplayLab" type="Node2D" unique_id=2111630056]
 script = ExtResource("1_script")
@@ -48,16 +77,6 @@ offset_bottom = 500.0
 mouse_filter = 2
 color = Color(0.772549, 0.611765, 0.321569, 0.65)
 
-[node name="Title" type="Label" parent="." unique_id=119368781]
-offset_left = 458.0
-offset_top = 12.0
-offset_right = 822.0
-offset_bottom = 50.0
-theme_override_colors/font_color = Color(1, 0.901961, 0.658824, 1)
-theme_override_font_sizes/font_size = 26
-text = "ASADO ARGENTO — GAMEPLAY LAB"
-horizontal_alignment = 1
-
 [node name="GuestTable" type="ColorRect" parent="." unique_id=391145268]
 z_index = -5
 offset_left = 560.0
@@ -67,14 +86,6 @@ offset_bottom = 541.63
 mouse_filter = 2
 color = Color(0.552941, 0.337255, 0.180392, 1)
 
-[node name="GuestTableLabel" type="Label" parent="." unique_id=1762015204]
-offset_left = 749.0
-offset_top = 415.0
-offset_right = 969.0
-offset_bottom = 443.0
-text = "Mesa de invitados"
-horizontal_alignment = 1
-
 [node name="Entities" type="Node2D" parent="." unique_id=241066293]
 
 [node name="MeatDesk" parent="Entities" unique_id=223307176 instance=ExtResource("4_meat_desk")]
@@ -83,30 +94,25 @@ interaction_label = "Interactuar"
 
 [node name="Grill" parent="Entities" unique_id=790372974 instance=ExtResource("5_grill")]
 position = Vector2(282, 452)
-meat_sprite_scale = Vector2(0.2, 0.2)
 
 [node name="Fernet" parent="Entities" unique_id=1191953493 instance=ExtResource("6_fernet")]
 position = Vector2(445, 463)
 interaction_label = "Interactuar"
 
 [node name="FernetCraftTable" parent="Entities" unique_id=2018137713 instance=ExtResource("7_fernet_table")]
-position = Vector2(588, 522)
+position = Vector2(628, 653)
 interaction_label = "Interactuar"
+
+[node name="ServingTable" parent="Entities" unique_id=1800828113 instance=ExtResource("8_serving")]
+position = Vector2(607, 508)
+interaction_label = "Interactuar"
+
+[node name="NPC2" parent="Entities" unique_id=56917356 instance=ExtResource("3_npc")]
+position = Vector2(760, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
 
 [node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]
 position = Vector2(322, 505)
-
-[node name="NPCDetras1" parent="Entities" unique_id=56917356 instance=ExtResource("3_npc")]
-position = Vector2(696, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado")])
-
-[node name="ServingTable" parent="Entities" unique_id=1800828113 instance=ExtResource("8_serving")]
-position = Vector2(548.5, 510.03)
-interaction_label = "Interactuar"
-
-[node name="NPCDelante1" parent="Entities" unique_id=1204504510 instance=ExtResource("3_npc")]
-position = Vector2(696, 576)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado")])
 
 [node name="CookingMinigame" parent="." unique_id=579274624 instance=ExtResource("9_minigame")]
 
@@ -135,7 +141,7 @@ text = "Enojo: 50 / 100"
 [node name="AngerBar" type="ProgressBar" parent="HUD/Margin/VBox" unique_id=44489301]
 custom_minimum_size = Vector2(300, 24)
 layout_mode = 2
-value = 11.18
+value = 50.0
 show_percentage = false
 
 [node name="HeldItem" type="Label" parent="HUD/Margin/VBox" unique_id=291526245]
@@ -164,6 +170,105 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 
+[node name="QTEPrompt" type="Control" parent="HUD" unique_id=2114847147]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SpaceKey" type="PanelContainer" parent="HUD/QTEPrompt" unique_id=663972721]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -124.0
+offset_right = 120.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBox_qte_key")
+
+[node name="Label" type="Label" parent="HUD/QTEPrompt/SpaceKey" unique_id=561368800]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.176471, 0.121569, 0.0784314, 1)
+theme_override_font_sizes/font_size = 28
+text = "ESPACIO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LosePopup" type="Control" parent="HUD" unique_id=2062675794]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimBackground" type="ColorRect" parent="HUD/LosePopup" unique_id=942860475]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="HUD/LosePopup" unique_id=15287233]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="HUD/LosePopup/Center" unique_id=842281658]
+custom_minimum_size = Vector2(430, 190)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBox_lose_popup")
+
+[node name="Margin" type="MarginContainer" parent="HUD/LosePopup/Center/Panel" unique_id=1088350018]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="VBox" type="VBoxContainer" parent="HUD/LosePopup/Center/Panel/Margin" unique_id=2113816598]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Message" type="Label" parent="HUD/LosePopup/Center/Panel/Margin/VBox" unique_id=518419358]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.964706, 0.901961, 0.686275, 1)
+theme_override_font_sizes/font_size = 28
+text = "Se te acabó la paciencia!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="HUD/LosePopup/Center/Panel/Margin/VBox" unique_id=416866094]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Reintentar"
+
 [node name="MessageTimer" type="Timer" parent="." unique_id=243238414]
 wait_time = 3.0
+one_shot = true
+
+[node name="QTETimer" type="Timer" parent="." unique_id=242262344]
+one_shot = true
+
+[node name="PenaltyTimer" type="Timer" parent="." unique_id=235548926]
 one_shot = true
