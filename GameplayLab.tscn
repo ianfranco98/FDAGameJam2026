@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://42ra35msfqse" path="res://scripts/gameplay_lab.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://cdrx467pqcebk" path="res://scenes/entities/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" uid="uid://bx6t43rs67awb" path="res://scenes/entities/npc.tscn" id="3_npc"]
 [ext_resource type="PackedScene" uid="uid://ca1nuhul6ngnn" path="res://scenes/entities/meat_desk.tscn" id="4_meat_desk"]
 [ext_resource type="PackedScene" uid="uid://cqwm504skrohg" path="res://scenes/entities/grill.tscn" id="5_grill"]
 [ext_resource type="PackedScene" uid="uid://b203800q6gsi1" path="res://scenes/entities/fernet.tscn" id="6_fernet"]
@@ -10,6 +9,8 @@
 [ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="8_knb0c"]
 [ext_resource type="PackedScene" uid="uid://c4hi1a6i08epf" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
 [ext_resource type="PackedScene" uid="uid://u0qrmolvv2qn" path="res://scenes/ui/cooking_minigame.tscn" id="9_minigame"]
+[ext_resource type="PackedScene" uid="uid://dgqw5vxyoodpn" path="res://scenes/NPCs/fantasma.tscn" id="10_5kvol"]
+[ext_resource type="PackedScene" uid="uid://drtndyxros5vl" path="res://scenes/NPCs/piñon.tscn" id="10_gt31q"]
 [ext_resource type="Resource" uid="uid://dpride3ldn3s7" path="res://scripts/entities/TestChori.tres" id="10_tira_asado"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBox_qte_key"]
@@ -88,7 +89,7 @@ color = Color(0.552941, 0.337255, 0.180392, 1)
 [node name="Entities" type="Node2D" parent="." unique_id=241066293]
 
 [node name="MeatDesk" parent="Entities" unique_id=223307176 instance=ExtResource("4_meat_desk")]
-position = Vector2(66, 529)
+position = Vector2(77, 487)
 interaction_label = "Interactuar"
 
 [node name="Grill" parent="Entities" unique_id=790372974 instance=ExtResource("5_grill")]
@@ -103,12 +104,16 @@ interaction_label = "Interactuar"
 position = Vector2(628, 653)
 interaction_label = "Interactuar"
 
-[node name="NPCAtras1" parent="Entities" unique_id=56917356 instance=ExtResource("3_npc")]
-position = Vector2(681.66, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado")])
-
 [node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]
 position = Vector2(322, 505)
+
+[node name="NPCPiñon" parent="Entities" unique_id=435966552 instance=ExtResource("10_gt31q")]
+position = Vector2(771.245, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+
+[node name="NPCFantasma" parent="Entities" unique_id=902449602 instance=ExtResource("10_5kvol")]
+position = Vector2(681.66, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
 
 [node name="ServingTable" parent="Entities" unique_id=1800828113 instance=ExtResource("8_serving")]
 position = Vector2(548.545, 508)
@@ -120,10 +125,10 @@ interaction_label = "Interactuar"
 layer = 10
 
 [node name="Margin" type="MarginContainer" parent="HUD" unique_id=1698829734]
-offset_left = 18.0
-offset_top = 578.0
-offset_right = 348.0
-offset_bottom = 730.0
+offset_left = 14.0
+offset_top = 517.0
+offset_right = 344.0
+offset_bottom = 669.0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
@@ -145,6 +150,7 @@ value = 50.0
 show_percentage = false
 
 [node name="HeldItem" type="Label" parent="HUD/Margin/VBox" unique_id=291526245]
+visible = false
 layout_mode = 2
 text = "Llevando: Nada"
 
@@ -272,3 +278,7 @@ one_shot = true
 
 [node name="PenaltyTimer" type="Timer" parent="." unique_id=235548926]
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1268410127]
+position = Vector2(470, 357)
+zoom = Vector2(1.37, 1.37)
