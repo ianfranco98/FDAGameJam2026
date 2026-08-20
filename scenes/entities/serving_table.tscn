@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://k382hdgs3k8x" path="res://scripts/entities/serving_table.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://d0y7yagg872tj" path="res://assets/placeholders/serving_table.svg" id="2_texture"]
+[ext_resource type="Texture2D" uid="uid://crduarliegbtc" path="res://assets/Escenario/mesa_final.png" id="3_3w45j"]
+[ext_resource type="Texture2D" uid="uid://2s0co5j130jx" path="res://assets/Escenario/mesa_modulo.png" id="4_p3teu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_interaction"]
 radius = 90.0
@@ -16,16 +18,46 @@ position = Vector2(0, -43)
 texture = ExtResource("2_texture")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=357743556]
-position = Vector2(0, -38)
+position = Vector2(46, -23)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1396479231]
 shape = SubResource("CircleShape_interaction")
 
 [node name="Label" type="Label" parent="." unique_id=450703397]
-offset_left = -62.0
-offset_top = -120.0
-offset_right = 62.0
-offset_bottom = -97.0
+offset_left = -43.0
+offset_top = -138.0
+offset_right = 85.0
+offset_bottom = -115.0
 text = "Mesa de servicio"
 horizontal_alignment = 1
+
+[node name="FinalMesa" type="Sprite2D" parent="." unique_id=342260191]
+position = Vector2(68.03, -40.19998)
+scale = Vector2(0.89, 0.89)
+texture = ExtResource("3_3w45j")
+
+[node name="FinalMesa2" type="Sprite2D" parent="." unique_id=1265095496]
+position = Vector2(211.24503, -40.200012)
+scale = Vector2(0.89, 0.89)
+texture = ExtResource("4_p3teu")
+
+[node name="FinalMesa3" type="Sprite2D" parent="." unique_id=431113196]
+position = Vector2(354.03, -40.200012)
+scale = Vector2(0.89, 0.89)
+texture = ExtResource("4_p3teu")
+
+[node name="FinalMesa4" type="Sprite2D" parent="." unique_id=1974566958]
+position = Vector2(497.06003, -40.200012)
+scale = Vector2(0.89, 0.89)
+texture = ExtResource("4_p3teu")
+
+[node name="FinalMesa5" type="Sprite2D" parent="." unique_id=595575965]
+position = Vector2(640.0301, -40.200012)
+scale = Vector2(0.89, 0.89)
+texture = ExtResource("4_p3teu")
+
+[node name="FinalMesa6" type="Sprite2D" parent="." unique_id=980766940]
+position = Vector2(783, -40.000004)
+scale = Vector2(0.89, 0.89)
+texture = ExtResource("4_p3teu")

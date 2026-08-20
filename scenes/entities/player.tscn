@@ -24,10 +24,10 @@ script = ExtResource("1_script")
 position = Vector2(0, -48)
 sprite_frames = SubResource("SpriteFrames_player")
 
-[node name="HeldItemVisual" type="Sprite2D" parent="."]
+[node name="HeldItemVisual" type="Sprite2D" parent="." unique_id=7997792]
+visible = false
 position = Vector2(0, -48)
 scale = Vector2(0.42, 0.42)
-visible = false
 
 [node name="CharacterArea" type="Area2D" parent="." unique_id=1511410198]
 position = Vector2(0, -38)
