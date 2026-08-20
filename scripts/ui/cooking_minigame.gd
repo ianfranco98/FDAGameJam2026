@@ -69,6 +69,7 @@ func _button_is_disabled(placed_meat: GrillMeat) -> bool:
 
 func _on_meat_pressed(placed_meat: GrillMeat) -> void:
 	var changed := false
+	var picked_meat := false
 	match placed_meat.cook_state:
 		GrillMeat.CookState.HALF_COOKED:
 			changed = grill.try_flip_meat(placed_meat)
@@ -76,9 +77,14 @@ func _on_meat_pressed(placed_meat: GrillMeat) -> void:
 				player.notify("Diste vuelta %s." % placed_meat.meat.get_display_name())
 		GrillMeat.CookState.READY:
 			changed = grill.try_pick_ready_meat(player, placed_meat)
+			picked_meat = changed
 		GrillMeat.CookState.BURNED:
 			changed = grill.discard_burned_meat(placed_meat)
 			if changed:
 				player.notify("Descartaste %s quemada." % placed_meat.meat.get_display_name())
-	if changed:
-		refresh()
+	if not changed:
+		return
+	if picked_meat:
+		exit()
+		return
+	refresh()

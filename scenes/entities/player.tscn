@@ -1,16 +1,50 @@
 [gd_scene format=3 uid="uid://cdrx467pqcebk"]
 
 [ext_resource type="Script" uid="uid://dpnea1dn5nge0" path="res://scripts/entities/player.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://djvoe880pwfhq" path="res://assets/placeholders/player.svg" id="2_texture"]
+[ext_resource type="Texture2D" uid="uid://swhakvtkp51e" path="res://assets/Pjs/Pj_Choripanero/CHORIMAN_Derech.png" id="2_d4qa6"]
+[ext_resource type="Texture2D" uid="uid://cwugxvublluk5" path="res://assets/Pjs/Pj_Choripanero/CHORIMAN_parrilla_00.png" id="3_d4qa6"]
+[ext_resource type="Texture2D" uid="uid://c4rlfih05b513" path="res://assets/Pjs/Pj_Choripanero/CHORIMAN_Lleva-Derech.png" id="3_ss7kx"]
+[ext_resource type="Texture2D" uid="uid://fmvderw1o3tc" path="res://assets/Pjs/Pj_Choripanero/CHORIMAN_parrilla_01.png" id="4_ss7kx"]
+[ext_resource type="Texture2D" uid="uid://dgs6o6b0ynxo1" path="res://assets/Pjs/Pj_Choripanero/CHORIMAN_parrilla_02.png" id="5_dnykm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_texture")
+"texture": ExtResource("2_d4qa6")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"holding_item",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ss7kx")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_d4qa6")
+}],
+"loop": 1,
+"name": &"interacting_grill",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_d4qa6")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_ss7kx")
+}, {
+"duration": 5.0,
+"texture": ExtResource("5_dnykm")
+}],
+"loop": 0,
+"name": &"parry",
 "speed": 5.0
 }]
 
@@ -22,10 +56,13 @@ script = ExtResource("1_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1990326008]
 position = Vector2(0, -48)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_player")
+animation = &"holding_item"
+autoplay = "idle"
 
 [node name="HeldItemVisual" type="Sprite2D" parent="." unique_id=7997792]
-position = Vector2(0, -48)
+position = Vector2(0, -72)
 scale = Vector2(0.205, 0.205)
 
 [node name="CharacterArea" type="Area2D" parent="." unique_id=1511410198]
