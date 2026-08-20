@@ -1,28 +1,28 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://cqf6eyej0ql8b"]
 
-[ext_resource type="Script" path="res://scripts/entities/fernet_craft_table.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/placeholders/fernet_table.svg" id="2_texture"]
+[ext_resource type="Script" uid="uid://ddwdtkd1wg33k" path="res://scripts/entities/fernet_craft_table.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bn822wooumvc3" path="res://assets/placeholders/fernet_table.svg" id="2_texture"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_interaction"]
 radius = 82.0
 
-[node name="FernetCraftTable" type="Node2D"]
+[node name="FernetCraftTable" type="Node2D" unique_id=1502316310]
 script = ExtResource("1_script")
 interaction_label = "Preparar Fernet"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=618863736]
+visible = false
 position = Vector2(0, -43)
 texture = ExtResource("2_texture")
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=694090849]
 position = Vector2(0, -37)
 collision_layer = 2
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1904403036]
 shape = SubResource("CircleShape_interaction")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1055177142]
 offset_left = -68.0
 offset_top = -118.0
 offset_right = 68.0
