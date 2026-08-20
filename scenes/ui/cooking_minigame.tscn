@@ -21,8 +21,8 @@ script = ExtResource("1_script")
 [node name="Content" type="PanelContainer" parent="." unique_id=1533822934]
 offset_left = 44.0
 offset_top = 25.0
-offset_right = 497.93
-offset_bottom = 278.655
+offset_right = 629.16
+offset_bottom = 369.56
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBox_panel")
 

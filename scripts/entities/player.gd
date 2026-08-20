@@ -6,6 +6,10 @@ const RAW_MEAT_MODULATE := Color.WHITE
 const COOKED_MEAT_MODULATE := Color(1.0, 0.62, 0.32)
 const EMPTY_FERNET_MODULATE := Color(0.62, 0.62, 0.62, 0.55)
 const READY_FERNET_MODULATE := Color(1.0, 0.88, 0.48)
+const IDLE_ANIMATION: StringName = &"idle"
+const HOLDING_ITEM_ANIMATION: StringName = &"holding_item"
+const INTERACTING_GRILL_ANIMATION: StringName = &"interacting_grill"
+const PARRY_ANIMATION: StringName = &"parry"
 
 signal held_item_changed(item_name: String)
 signal interaction_changed(prompt: String)
@@ -34,6 +38,8 @@ var _nearby_interactables: Array[InteractableObject] = []
 var _current_interactable: InteractableObject
 var _minigame_input_active: bool = false
 var _controls_locked: bool = false
+var _is_moving: bool = false
+var _is_parrying: bool = false
 
 
 func _ready() -> void:
@@ -42,7 +48,9 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	area_overlap_started.connect(_on_character_overlap_started)
 	area_overlap_ended.connect(_on_character_overlap_ended)
+	animated_sprite.animation_finished.connect(_on_animation_finished)
 	_refresh_held_item_visual()
+	_refresh_animation_state()
 	held_item_changed.emit(get_held_item_name())
 
 
@@ -50,8 +58,10 @@ func _physics_process(delta: float) -> void:
 	var direction := 0.0
 	if not _minigame_input_active and not _controls_locked:
 		direction = Input.get_axis("move_left", "move_right")
+	_is_moving = not is_zero_approx(direction)
 	position.x = clampf(position.x + direction * move_speed * delta, min_x, max_x)
 	animated_sprite.flip_h = direction < 0.0 if direction != 0.0 else animated_sprite.flip_h
+	_refresh_animation_state()
 	_refresh_current_interactable()
 
 
@@ -69,6 +79,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func set_minigame_input_active(active: bool) -> void:
 	_minigame_input_active = active
+	_refresh_animation_state()
 	_refresh_current_interactable(true)
 
 
@@ -86,8 +97,14 @@ func are_controls_locked() -> bool:
 func set_held_item(new_item: HeldItem) -> void:
 	held_item = new_item
 	_refresh_held_item_visual()
+	_refresh_animation_state()
 	held_item_changed.emit(get_held_item_name())
 	_refresh_current_interactable(true)
+
+
+func play_parry() -> void:
+	_is_parrying = true
+	_play_animation(PARRY_ANIMATION)
 
 
 func hold_raw_meat(order: MeatOrder) -> void:
@@ -152,6 +169,33 @@ func get_held_item_name() -> String:
 
 func notify(message: String) -> void:
 	message_requested.emit(message)
+
+
+func _refresh_animation_state() -> void:
+	if _is_parrying:
+		return
+	if _minigame_input_active:
+		_play_animation(INTERACTING_GRILL_ANIMATION)
+	elif held_item != HeldItem.NONE:
+		_play_animation(HOLDING_ITEM_ANIMATION)
+	elif not _is_moving:
+		_play_animation(IDLE_ANIMATION)
+	else:
+		# There is no locomotion clip yet, so movement falls back to idle.
+		_play_animation(IDLE_ANIMATION)
+
+
+func _play_animation(animation_name: StringName) -> void:
+	if animated_sprite.animation == animation_name and animated_sprite.is_playing():
+		return
+	animated_sprite.play(animation_name)
+
+
+func _on_animation_finished() -> void:
+	if animated_sprite.animation != PARRY_ANIMATION:
+		return
+	_is_parrying = false
+	_refresh_animation_state()
 
 func _try_interact() -> void:
 	_refresh_current_interactable()

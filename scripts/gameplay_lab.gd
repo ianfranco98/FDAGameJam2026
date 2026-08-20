@@ -111,6 +111,7 @@ func _resolve_qte_success() -> void:
 	qte_timer.stop()
 	_qte_active = false
 	qte_prompt.visible = false
+	player.play_parry()
 	player.set_controls_locked(false)
 	if is_instance_valid(_active_npc):
 		_active_npc.return_to_seat()
