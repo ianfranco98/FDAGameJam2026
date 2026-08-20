@@ -101,12 +101,15 @@ func claim_available_order() -> MeatOrder:
 	return null
 
 
-func complete_order(order: MeatOrder) -> bool:
-	if order == null or not current_orders.has(order):
+func complete_order(order: MeatOrder, fallback_meat_type: Meat.Type = Meat.Type.Invalid) -> bool:
+	var order_to_complete: MeatOrder = order
+	if order_to_complete == null or not current_orders.has(order_to_complete):
+		order_to_complete = _find_current_order_by_meat_type(fallback_meat_type)
+	if order_to_complete == null:
 		return false
-	order.state = MeatOrder.State.COMPLETED
-	_remove_order(order)
-	order_completed.emit(order)
+	order_to_complete.state = MeatOrder.State.COMPLETED
+	_remove_order(order_to_complete)
+	order_completed.emit(order_to_complete)
 	check_win_condition()
 	return true
 
@@ -142,3 +145,12 @@ func _has_meat_type_in_preparation(meat_type: Meat.Type) -> bool:
 		if order.meat_type == meat_type and order.state == MeatOrder.State.IN_PREPARATION:
 			return true
 	return false
+
+
+func _find_current_order_by_meat_type(meat_type: Meat.Type) -> MeatOrder:
+	if meat_type == Meat.Type.Invalid:
+		return null
+	for order in current_orders:
+		if order.meat_type == meat_type:
+			return order
+	return null

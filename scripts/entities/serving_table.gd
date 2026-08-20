@@ -13,10 +13,13 @@ func interact(player: Player) -> void:
 	if player.held_item != Player.HeldItem.COOKED_MEAT:
 		player.notify("Necesitás una carne cocida para servir.")
 		return
-	if not GameState.complete_order(player.held_meat_order):
-		player.notify("Ese pedido ya no está activo.")
+	var served_name := GameState.meat_type_name(player.held_meat)
+	if player.held_meat_order != null and player.held_meat_order.meat != null:
+		served_name = player.held_meat_order.meat.get_display_name()
+	if not GameState.complete_order(player.held_meat_order, player.held_meat):
+		player.clear_held_meat()
+		player.notify("No hay un pedido activo para esa carne. La descartaste.")
 		return
-	var served_name := player.held_meat_order.meat.get_display_name()
 	serve_meat(player)
 	player.notify("Serviste %s. ¡Pedido completado!" % served_name)
 	super.interact(player)
