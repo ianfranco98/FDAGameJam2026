@@ -56,12 +56,13 @@ script = ExtResource("1_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1990326008]
 position = Vector2(0, -48)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"holding_item"
 autoplay = "idle"
 
 [node name="HeldItemVisual" type="Sprite2D" parent="." unique_id=7997792]
+visible = false
 position = Vector2(0, -72)
 scale = Vector2(0.205, 0.205)
 

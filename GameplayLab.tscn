@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://dgqw5vxyoodpn" path="res://scenes/NPCs/fantasma.tscn" id="10_5kvol"]
 [ext_resource type="PackedScene" uid="uid://drtndyxros5vl" path="res://scenes/NPCs/piñon.tscn" id="10_gt31q"]
 [ext_resource type="Resource" uid="uid://dpride3ldn3s7" path="res://scripts/entities/TestChori.tres" id="10_tira_asado"]
+[ext_resource type="PackedScene" uid="uid://ljyf67nw3uoo" path="res://scenes/NPCs/miku.tscn" id="11_xuk4v"]
+[ext_resource type="PackedScene" uid="uid://cc82mfor6fram" path="res://scenes/NPCs/alien.tscn" id="13_fh2tn"]
+[ext_resource type="PackedScene" uid="uid://c2h8msvxqwokm" path="res://scenes/NPCs/dumbo.tscn" id="14_bcham"]
+[ext_resource type="PackedScene" uid="uid://d1listwpbssog" path="res://scenes/NPCs/GymBro1.tscn" id="14_fh2tn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBox_qte_key"]
 bg_color = Color(0.964706, 0.901961, 0.686275, 1)
@@ -105,19 +109,45 @@ position = Vector2(628, 653)
 interaction_label = "Interactuar"
 
 [node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]
-position = Vector2(322, 505)
+position = Vector2(322, 486.25)
+max_x = 510.0
 
 [node name="NPCPiñon" parent="Entities" unique_id=435966552 instance=ExtResource("10_gt31q")]
-position = Vector2(771.245, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+position = Vector2(780, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+next_order_delay = 4.0
+failure_anger_amount = 17.0
 
 [node name="NPCFantasma" parent="Entities" unique_id=902449602 instance=ExtResource("10_5kvol")]
-position = Vector2(681.66, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+position = Vector2(658, 468)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+next_order_delay = 4.0
+failure_anger_amount = 17.0
+
+[node name="NPCMiku" parent="Entities" unique_id=2003085905 instance=ExtResource("11_xuk4v")]
+position = Vector2(883, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+next_order_delay = 4.0
+failure_anger_amount = 17.0
 
 [node name="ServingTable" parent="Entities" unique_id=1800828113 instance=ExtResource("8_serving")]
-position = Vector2(548.545, 508)
+position = Vector2(548.545, 499.435)
 interaction_label = "Interactuar"
+
+[node name="NPCAlien" parent="Entities" unique_id=1915376213 instance=ExtResource("13_fh2tn")]
+position = Vector2(840, 551)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+next_order_delay = 4.0
+failure_anger_amount = 17.0
+
+[node name="NPCGymBro" parent="Entities" unique_id=844357468 instance=ExtResource("14_fh2tn")]
+position = Vector2(724, 559)
+
+[node name="NPCDumbo" parent="Entities" unique_id=577103773 instance=ExtResource("14_bcham")]
+position = Vector2(724, 559)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+next_order_delay = 4.0
+failure_anger_amount = 17.0
 
 [node name="CookingMinigame" parent="." unique_id=579274624 instance=ExtResource("9_minigame")]
 
@@ -141,12 +171,12 @@ theme_override_constants/separation = 4
 [node name="AngerValue" type="Label" parent="HUD/Margin/VBox" unique_id=1075152363]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Enojo: 50 / 100"
+text = "Enojo: 15 / 100"
 
 [node name="AngerBar" type="ProgressBar" parent="HUD/Margin/VBox" unique_id=44489301]
 custom_minimum_size = Vector2(300, 24)
 layout_mode = 2
-value = 50.0
+value = 15.0
 show_percentage = false
 
 [node name="HeldItem" type="Label" parent="HUD/Margin/VBox" unique_id=291526245]
