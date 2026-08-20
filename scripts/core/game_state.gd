@@ -8,7 +8,7 @@ signal game_won
 signal game_lost
 
 @export var max_anger: float = 100.0
-@export var initial_anger: float = 50.0
+@export var initial_anger: float = 0.0
 @export var npc_waypoint_speed: float = 200.0
 @export var npc_pursuit_speed: float = 300.0
 
