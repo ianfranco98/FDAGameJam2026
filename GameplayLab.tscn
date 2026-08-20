@@ -113,21 +113,21 @@ max_x = 510.0
 
 [node name="NPCPiñon" parent="Entities" unique_id=435966552 instance=ExtResource("10_gt31q")]
 position = Vector2(780, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
-next_order_delay = 3.5
-failure_anger_amount = 32.0
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+next_order_delay = 1.5
+failure_anger_amount = 37.0
 
 [node name="NPCFantasma" parent="Entities" unique_id=902449602 instance=ExtResource("10_5kvol")]
 position = Vector2(658, 468)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
-next_order_delay = 3.5
-failure_anger_amount = 32.0
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+next_order_delay = 5.0
+failure_anger_amount = 37.0
 
 [node name="NPCMiku" parent="Entities" unique_id=2003085905 instance=ExtResource("11_xuk4v")]
 position = Vector2(883, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
-next_order_delay = 3.5
-failure_anger_amount = 32.0
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+next_order_delay = 2.0
+failure_anger_amount = 37.0
 
 [node name="ServingTable" parent="Entities" unique_id=1800828113 instance=ExtResource("8_serving")]
 position = Vector2(548.545, 499.435)
@@ -135,20 +135,20 @@ interaction_label = "Interactuar"
 
 [node name="NPCAlien" parent="Entities" unique_id=1915376213 instance=ExtResource("13_fh2tn")]
 position = Vector2(884.02, 551)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
-next_order_delay = 3.5
-failure_anger_amount = 32.0
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+failure_anger_amount = 37.0
 
 [node name="NPCGymBro" parent="Entities" unique_id=844357468 instance=ExtResource("14_fh2tn")]
 position = Vector2(773, 559)
-next_order_delay = 3.5
-failure_anger_amount = 32.0
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+next_order_delay = 4.0
+failure_anger_amount = 37.0
 
 [node name="NPCDumbo" parent="Entities" unique_id=577103773 instance=ExtResource("14_bcham")]
 position = Vector2(662, 559)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
 next_order_delay = 3.5
-failure_anger_amount = 32.0
+failure_anger_amount = 37.0
 
 [node name="CookingMinigame" parent="." unique_id=579274624 instance=ExtResource("9_minigame")]
 
