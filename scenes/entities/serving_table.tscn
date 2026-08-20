@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://d0y7yagg872tj" path="res://assets/placeholders/serving_table.svg" id="2_texture"]
 [ext_resource type="Texture2D" uid="uid://crduarliegbtc" path="res://assets/Escenario/mesa_final.png" id="3_3w45j"]
 [ext_resource type="Texture2D" uid="uid://2s0co5j130jx" path="res://assets/Escenario/mesa_modulo.png" id="4_p3teu"]
+[ext_resource type="Texture2D" uid="uid://62ydy86g7oeu" path="res://assets/Props/hielo.png" id="5_kmm12"]
+[ext_resource type="Texture2D" uid="uid://qnsfdxuu4tou" path="res://assets/Props/coca.png" id="6_4tesy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_interaction"]
 radius = 90.0
@@ -61,3 +63,13 @@ texture = ExtResource("4_p3teu")
 position = Vector2(783, -40.000004)
 scale = Vector2(0.89, 0.89)
 texture = ExtResource("4_p3teu")
+
+[node name="hielo" type="Sprite2D" parent="." unique_id=570659990]
+position = Vector2(38.999996, -30)
+scale = Vector2(0.275, 0.275)
+texture = ExtResource("5_kmm12")
+
+[node name="coca" type="Sprite2D" parent="." unique_id=567413017]
+position = Vector2(70, -44)
+scale = Vector2(0.275, 0.275)
+texture = ExtResource("6_4tesy")

@@ -19,7 +19,7 @@ enum HeldItem {
 	READY_FERNET,
 }
 
-@export var move_speed: float = 260.0
+@export var move_speed: float = 330.0
 @export var min_x: float = 55.0
 @export var max_x: float = 553.0
 
