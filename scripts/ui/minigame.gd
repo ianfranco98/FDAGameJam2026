@@ -33,6 +33,7 @@ func enter(player: Player) -> void:
 	_player = player
 	_player.set_minigame_input_active(true)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.warp_mouse(content.get_global_rect().get_center())
 
 
 func exit() -> void:

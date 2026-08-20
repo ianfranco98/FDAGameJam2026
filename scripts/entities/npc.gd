@@ -59,9 +59,9 @@ func _ready() -> void:
 	await get_tree().create_timer(rand_time, false).timeout
 	request_order()
 
-	var approach_test_delay := randf_range(1.0, 3.0)
-	await get_tree().create_timer(approach_test_delay, false).timeout
-	test_activate_approach()
+#	var approach_test_delay := randf_range(1.0, 3.0)
+#	await get_tree().create_timer(approach_test_delay, false).timeout
+#	test_activate_approach()
 
 
 func _process(_delta: float) -> void:
