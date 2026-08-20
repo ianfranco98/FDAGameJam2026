@@ -16,5 +16,5 @@ half_cooked_texture = ExtResource("3_byvk2")
 burned_texture = ExtResource("1_1tw8d")
 first_side_duration = 3.0
 second_side_duration = 3.0
-max_wait_time = 18.0
+max_wait_time = 20.0
 metadata/_custom_type_script = "uid://d2mgufc8y8sd8"

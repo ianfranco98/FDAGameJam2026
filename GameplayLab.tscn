@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cqf6eyej0ql8b" path="res://scenes/entities/fernet_craft_table.tscn" id="7_fernet_table"]
 [ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="8_knb0c"]
 [ext_resource type="PackedScene" uid="uid://c4hi1a6i08epf" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
-[ext_resource type="Resource" uid="uid://cqp0a7ma5ti2v" path="res://scripts/entities/TestMeat.tres" id="9_5kvol"]
 [ext_resource type="PackedScene" uid="uid://u0qrmolvv2qn" path="res://scenes/ui/cooking_minigame.tscn" id="9_minigame"]
 [ext_resource type="Resource" uid="uid://dpride3ldn3s7" path="res://scripts/entities/TestChori.tres" id="10_tira_asado"]
 
@@ -94,6 +93,7 @@ interaction_label = "Interactuar"
 
 [node name="Grill" parent="Entities" unique_id=790372974 instance=ExtResource("5_grill")]
 position = Vector2(282, 452)
+meat_sprite_scale = Vector2(0.2, 0.2)
 
 [node name="Fernet" parent="Entities" unique_id=1191953493 instance=ExtResource("6_fernet")]
 position = Vector2(445, 463)
@@ -103,16 +103,16 @@ interaction_label = "Interactuar"
 position = Vector2(628, 653)
 interaction_label = "Interactuar"
 
-[node name="ServingTable" parent="Entities" unique_id=1800828113 instance=ExtResource("8_serving")]
-position = Vector2(607, 508)
-interaction_label = "Interactuar"
-
-[node name="NPC2" parent="Entities" unique_id=56917356 instance=ExtResource("3_npc")]
-position = Vector2(760, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("9_5kvol"), ExtResource("10_tira_asado")])
+[node name="NPCAtras1" parent="Entities" unique_id=56917356 instance=ExtResource("3_npc")]
+position = Vector2(681.66, 472)
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado")])
 
 [node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]
 position = Vector2(322, 505)
+
+[node name="ServingTable" parent="Entities" unique_id=1800828113 instance=ExtResource("8_serving")]
+position = Vector2(548.545, 508)
+interaction_label = "Interactuar"
 
 [node name="CookingMinigame" parent="." unique_id=579274624 instance=ExtResource("9_minigame")]
 
