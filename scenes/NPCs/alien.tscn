@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cc82mfor6fram"]
+
+[ext_resource type="PackedScene" uid="uid://bx6t43rs67awb" path="res://scenes/entities/npc.tscn" id="1_hwth8"]
+[ext_resource type="Texture2D" uid="uid://bu5diys17yk5j" path="res://assets/Pjs/Pj_Alien/Alien_Delante_izq.png" id="2_hwth8"]
+
+[node name="NPC" unique_id=435966552 instance=ExtResource("1_hwth8")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=998467428]
+position = Vector2(0, -48)
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("2_hwth8")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=526607906]
+visible = false
+
+[node name="CharacterArea" parent="." index="2" unique_id=1280104191]
+scale = Vector2(1.75, 1.75)

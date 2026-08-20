@@ -16,5 +16,13 @@ animations = [{
 
 [node name="NPC" unique_id=435966552 instance=ExtResource("1_rda50")]
 
-[node name="AnimatedSprite2D" parent="." index="0" unique_id=526607906]
-sprite_frames = SubResource("SpriteFrames_7xxq3")
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=998467428]
+position = Vector2(0, -48)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_kqslc")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=526607906]
+visible = false
+
+[node name="CharacterArea" parent="." index="2" unique_id=1280104191]
+scale = Vector2(1.84, 1.84)
