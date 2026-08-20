@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dgqw5vxyoodpn"]
+
+[ext_resource type="PackedScene" uid="uid://bx6t43rs67awb" path="res://scenes/entities/npc.tscn" id="1_rda50"]
+[ext_resource type="Texture2D" uid="uid://do8klu4w7tyt1" path="res://assets/Pjs/Pj_Fantasma de la B/FantaDeLaB_Frente_Izq.png" id="2_kqslc"]
+
+[node name="NPC" unique_id=435966552 instance=ExtResource("1_rda50")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=998467428]
+position = Vector2(0, -48)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("2_kqslc")
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=526607906]
+visible = false
