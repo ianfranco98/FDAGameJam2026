@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b2m3gaamkpgqc" path="res://scripts/entities/npc.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://hwr55yr5ig4" path="res://assets/placeholders/npc.svg" id="2_texture"]
+[ext_resource type="Texture2D" uid="uid://kpecv3uwfo7c" path="res://ui/globo.png" id="3_cdmjo"]
+[ext_resource type="Texture2D" uid="uid://dj1ytqrdy8q0v" path="res://assets/Props/chorizo_crudo.png" id="4_3kvb8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_npc"]
 animations = [{
@@ -25,11 +27,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape_npc"]
 radius = 34.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knb0c"]
+bg_color = Color(0.6, 1, 0.3137255, 1)
+
 [node name="NPC" type="Node2D" unique_id=435966552]
 script = ExtResource("1_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=526607906]
 position = Vector2(0, -48)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_npc")
 
 [node name="CharacterArea" type="Area2D" parent="." unique_id=1280104191]
@@ -58,11 +64,20 @@ offset_right = 74.0
 offset_bottom = -128.0
 mouse_filter = 2
 
+[node name="Sprite2D" type="Sprite2D" parent="OrderWidget" unique_id=1178155679]
+position = Vector2(73.605, 55.135)
+scale = Vector2(0.5636363, 0.5636364)
+texture = ExtResource("3_cdmjo")
+
 [node name="VBox" type="VBoxContainer" parent="OrderWidget" unique_id=1809543958]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 29.0
+offset_right = -46.0
+offset_bottom = 21.435898
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 2
@@ -71,10 +86,12 @@ theme_override_constants/separation = 2
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+texture = ExtResource("4_3kvb8")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="OrderLabel" type="Label" parent="OrderWidget/VBox" unique_id=319317575]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.894118, 0.486275, 1)
 theme_override_font_sizes/font_size = 14
@@ -84,7 +101,10 @@ horizontal_alignment = 1
 [node name="OrderTimerBar" type="ProgressBar" parent="OrderWidget/VBox" unique_id=2009655230]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -59.77)
+theme_override_styles/fill = SubResource("StyleBoxFlat_knb0c")
 show_percentage = false
 
-[node name="NextOrderTimer" type="Timer" parent="."]
+[node name="NextOrderTimer" type="Timer" parent="." unique_id=1743769343]
 one_shot = true

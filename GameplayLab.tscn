@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://ca1nuhul6ngnn" path="res://scenes/entities/meat_desk.tscn" id="4_meat_desk"]
 [ext_resource type="PackedScene" uid="uid://cqwm504skrohg" path="res://scenes/entities/grill.tscn" id="5_grill"]
 [ext_resource type="PackedScene" uid="uid://b203800q6gsi1" path="res://scenes/entities/fernet.tscn" id="6_fernet"]
-[ext_resource type="PackedScene" uid="uid://cqf6eyej0ql8b" path="res://scenes/entities/fernet_craft_table.tscn" id="7_fernet_table"]
 [ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="8_knb0c"]
 [ext_resource type="PackedScene" uid="uid://c4hi1a6i08epf" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
 [ext_resource type="PackedScene" uid="uid://u0qrmolvv2qn" path="res://scenes/ui/cooking_minigame.tscn" id="9_minigame"]
 [ext_resource type="PackedScene" uid="uid://dgqw5vxyoodpn" path="res://scenes/NPCs/fantasma.tscn" id="10_5kvol"]
 [ext_resource type="PackedScene" uid="uid://drtndyxros5vl" path="res://scenes/NPCs/piñon.tscn" id="10_gt31q"]
 [ext_resource type="Resource" uid="uid://dpride3ldn3s7" path="res://scripts/entities/TestChori.tres" id="10_tira_asado"]
+[ext_resource type="Texture2D" uid="uid://bvrrlqbypem4e" path="res://ui/Barra1.png" id="12_5kvol"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBox_qte_key"]
 bg_color = Color(0.964706, 0.901961, 0.686275, 1)
@@ -98,10 +98,8 @@ meat_sprite_scale = Vector2(0.2, 0.2)
 
 [node name="Fernet" parent="Entities" unique_id=1191953493 instance=ExtResource("6_fernet")]
 position = Vector2(445, 463)
-interaction_label = "Interactuar"
-
-[node name="FernetCraftTable" parent="Entities" unique_id=2018137713 instance=ExtResource("7_fernet_table")]
-position = Vector2(628, 653)
+full_texture = null
+empty_texture = null
 interaction_label = "Interactuar"
 
 [node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]
@@ -112,7 +110,7 @@ position = Vector2(771.245, 472)
 available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
 
 [node name="NPCFantasma" parent="Entities" unique_id=902449602 instance=ExtResource("10_5kvol")]
-position = Vector2(681.66, 472)
+position = Vector2(663, 472)
 available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
 
 [node name="ServingTable" parent="Entities" unique_id=1800828113 instance=ExtResource("8_serving")]
@@ -125,10 +123,10 @@ interaction_label = "Interactuar"
 layer = 10
 
 [node name="Margin" type="MarginContainer" parent="HUD" unique_id=1698829734]
-offset_left = 14.0
-offset_top = 517.0
-offset_right = 344.0
-offset_bottom = 669.0
+offset_left = 9.0
+offset_top = 573.0
+offset_right = 649.46045
+offset_bottom = 868.0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
@@ -139,15 +137,16 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="AngerValue" type="Label" parent="HUD/Margin/VBox" unique_id=1075152363]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Enojo: 50 / 100"
 
-[node name="AngerBar" type="ProgressBar" parent="HUD/Margin/VBox" unique_id=44489301]
+[node name="AngerBar" type="TextureRect" parent="HUD/Margin/VBox" unique_id=44489301]
 custom_minimum_size = Vector2(300, 24)
 layout_mode = 2
-value = 50.0
-show_percentage = false
+texture = ExtResource("12_5kvol")
+expand_mode = 5
 
 [node name="HeldItem" type="Label" parent="HUD/Margin/VBox" unique_id=291526245]
 visible = false
@@ -155,10 +154,12 @@ layout_mode = 2
 text = "Llevando: Nada"
 
 [node name="FernetUsages" type="Label" parent="HUD/Margin/VBox" unique_id=2081388099]
+visible = false
 layout_mode = 2
 text = "Fernet: 3 / 3 usos"
 
 [node name="InteractionPrompt" type="Label" parent="HUD" unique_id=787933513]
+visible = false
 offset_left = 440.0
 offset_top = 648.0
 offset_right = 840.0
@@ -168,6 +169,7 @@ theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
 [node name="Message" type="Label" parent="HUD" unique_id=982499810]
+visible = false
 offset_left = 270.0
 offset_top = 596.0
 offset_right = 1010.0

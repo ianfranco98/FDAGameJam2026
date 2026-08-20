@@ -5,6 +5,8 @@ signal usages_changed(current: int, maximum: int)
 
 @export var max_usages: int = 3
 @export var anger_reduction: float = 20.0
+@export var full_texture: Texture2D
+@export var empty_texture: Texture2D
 
 var usages_left: int = 3
 var is_picked_up: bool = false
@@ -12,19 +14,22 @@ var is_picked_up: bool = false
 
 func _ready() -> void:
 	usages_left = max_usages
-	interaction_area.area_entered.connect(_on_interaction_area_entered)
+	_refresh_sprite()
 	usages_changed.emit(usages_left, max_usages)
 
 
 func can_interact(player: Player) -> bool:
-	return usages_left == 0 and not is_picked_up and player.held_item == Player.HeldItem.NONE
+	return not is_picked_up and player.held_item == Player.HeldItem.NONE
 
 
 func interact(player: Player) -> void:
 	if not can_interact(player):
 		return
+	if usages_left > 0:
+		try_consume(player)
+		return
 	is_picked_up = true
-	sprite.modulate.a = 0.2
+	sprite.visible = false
 	player.set_held_item(Player.HeldItem.EMPTY_FERNET)
 	player.notify("Equipaste el vaso vacío. Llévalo a la mesa de preparación.")
 	super.interact(player)
@@ -38,6 +43,7 @@ func try_consume(player: Player) -> bool:
 		player.notify("El Fernet está vacío. Acercate y presioná E para tomarlo.")
 		return false
 	usages_left -= 1
+	_refresh_sprite()
 	GameState.reduce_anger(anger_reduction)
 	usages_changed.emit(usages_left, max_usages)
 	player.notify("Tomaste Fernet: -%d de enojo." % int(anger_reduction))
@@ -47,15 +53,11 @@ func try_consume(player: Player) -> bool:
 func refill() -> void:
 	usages_left = max_usages
 	is_picked_up = false
-	sprite.modulate.a = 1.0
+	_refresh_sprite()
 	usages_changed.emit(usages_left, max_usages)
 
 
-func _on_interaction_area_entered(area: Area2D) -> void:
-	if not is_picked_up:
-		return
-	var player := area.get_parent() as Player
-	if player != null and player.held_item == Player.HeldItem.READY_FERNET:
-		player.set_held_item(Player.HeldItem.NONE)
-		refill()
-		player.notify("Dejaste el Fernet preparado en su lugar.")
+func _refresh_sprite() -> void:
+	sprite.visible = not is_picked_up
+	sprite.modulate = Color.WHITE
+	sprite.texture = empty_texture if usages_left == 0 else full_texture

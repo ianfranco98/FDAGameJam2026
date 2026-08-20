@@ -3,6 +3,13 @@ extends InteractableObject
 
 
 func interact(player: Player) -> void:
+	if player.held_item == Player.HeldItem.EMPTY_FERNET:
+		if is_instance_valid(player.fernet):
+			player.fernet.refill()
+			player.set_held_item(Player.HeldItem.NONE)
+			player.notify("Rellenaste el Fernet y lo dejaste en su lugar.")
+		super.interact(player)
+		return
 	if player.held_item != Player.HeldItem.COOKED_MEAT:
 		player.notify("Necesitás una carne cocida para servir.")
 		return

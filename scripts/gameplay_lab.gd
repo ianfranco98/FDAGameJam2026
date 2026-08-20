@@ -7,7 +7,7 @@ extends Node2D
 @onready var grill: Grill = $Entities/Grill
 @onready var cooking_minigame: CookingMinigame = $CookingMinigame
 
-@onready var anger_bar: ProgressBar = $HUD/Margin/VBox/AngerBar
+@onready var anger_bar: TextureRect = $HUD/Margin/VBox/AngerBar
 @onready var anger_value: Label = $HUD/Margin/VBox/AngerValue
 @onready var held_item_label: Label = $HUD/Margin/VBox/HeldItem
 @onready var fernet_usages_label: Label = $HUD/Margin/VBox/FernetUsages
@@ -23,6 +23,15 @@ extends Node2D
 var _event_in_progress: bool = false
 var _qte_active: bool = false
 var _active_npc: NPC
+var _anger_textures: Array[Texture2D] = [
+	preload("res://ui/Barra1.png"),
+	preload("res://ui/Barra2.png"),
+	preload("res://ui/Barra3.png"),
+	preload("res://ui/Barra4.png"),
+	preload("res://ui/Barra5.png"),
+	preload("res://ui/Barra6.png"),
+	preload("res://ui/Barra7.png"),
+]
 
 
 func _ready() -> void:
@@ -62,8 +71,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_anger_changed(current: float, maximum: float) -> void:
-	anger_bar.max_value = maximum
-	anger_bar.value = current
+	var anger_state := 0
+	if maximum > 0.0:
+		anger_state = clampi(floori(current / maximum * _anger_textures.size()), 0, _anger_textures.size() - 1)
+	anger_bar.texture = _anger_textures[anger_state]
 	anger_value.text = "Enojo: %d / %d" % [int(current), int(maximum)]
 
 

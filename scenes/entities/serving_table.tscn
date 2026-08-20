@@ -27,6 +27,7 @@ collision_layer = 2
 shape = SubResource("CircleShape_interaction")
 
 [node name="Label" type="Label" parent="." unique_id=450703397]
+visible = false
 offset_left = -43.0
 offset_top = -138.0
 offset_right = 85.0

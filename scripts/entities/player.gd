@@ -2,6 +2,7 @@ class_name Player
 extends Character
 
 const FERNET_TEXTURE: Texture2D = preload("res://assets/placeholders/fernet.svg")
+const EMPTY_FERNET_TEXTURE: Texture2D = preload("res://assets/placeholders/fernet_empty.svg")
 const RAW_MEAT_MODULATE := Color.WHITE
 const COOKED_MEAT_MODULATE := Color(1.0, 0.62, 0.32)
 const EMPTY_FERNET_MODULATE := Color(0.62, 0.62, 0.62, 0.55)
@@ -71,10 +72,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		_try_interact()
 		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed("use_fernet"):
-		if is_instance_valid(fernet):
-			fernet.try_consume(self)
-		get_viewport().set_input_as_handled()
 
 
 func set_minigame_input_active(active: bool) -> void:
@@ -142,8 +139,8 @@ func _refresh_held_item_visual() -> void:
 			held_item_visual.texture = held_meat_order.meat.get_cooked_texture()
 			held_item_visual.modulate = COOKED_MEAT_MODULATE
 		HeldItem.EMPTY_FERNET:
-			held_item_visual.texture = FERNET_TEXTURE
-			held_item_visual.modulate = EMPTY_FERNET_MODULATE
+			held_item_visual.texture = EMPTY_FERNET_TEXTURE
+			held_item_visual.modulate = Color.WHITE
 		HeldItem.READY_FERNET:
 			held_item_visual.texture = FERNET_TEXTURE
 			held_item_visual.modulate = READY_FERNET_MODULATE
@@ -213,8 +210,10 @@ func _try_interact() -> void:
 
 func _is_interaction_allowed(target: InteractableObject) -> bool:
 	if held_item == HeldItem.EMPTY_FERNET:
-		return target is FernetCraftTable
+		return target is ServingTable
 	if held_item == HeldItem.READY_FERNET:
+		return false
+	if target is Fernet and held_item in [HeldItem.RAW_MEAT, HeldItem.COOKED_MEAT]:
 		return false
 	return true
 

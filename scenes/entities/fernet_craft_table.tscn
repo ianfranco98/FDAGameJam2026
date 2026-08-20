@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cqf6eyej0ql8b"]
+[gd_scene format=3 uid="uid://dj180k317dffx"]
 
 [ext_resource type="Script" uid="uid://ddwdtkd1wg33k" path="res://scripts/entities/fernet_craft_table.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bn822wooumvc3" path="res://assets/placeholders/fernet_table.svg" id="2_texture"]
@@ -23,6 +23,7 @@ collision_layer = 2
 shape = SubResource("CircleShape_interaction")
 
 [node name="Label" type="Label" parent="." unique_id=1055177142]
+visible = false
 offset_left = -68.0
 offset_top = -118.0
 offset_right = 68.0

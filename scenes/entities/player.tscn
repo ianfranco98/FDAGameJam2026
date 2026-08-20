@@ -55,14 +55,14 @@ radius = 38.0
 script = ExtResource("1_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1990326008]
-position = Vector2(0, -48)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -73)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"holding_item"
 autoplay = "idle"
 
 [node name="HeldItemVisual" type="Sprite2D" parent="." unique_id=7997792]
-position = Vector2(0, -72)
+position = Vector2(0, -93)
 scale = Vector2(0.205, 0.205)
 
 [node name="CharacterArea" type="Area2D" parent="." unique_id=1511410198]
