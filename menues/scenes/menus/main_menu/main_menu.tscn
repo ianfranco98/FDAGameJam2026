@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5cv4wu328oky" path="res://menues/scenes/windows/main_menu_credits_window.tscn" id="4_be0vo"]
 [ext_resource type="Texture2D" uid="uid://b1wqnjwa8e40m" path="res://ui/CREDITOS SELECCIONADO.png" id="5_hp7dm"]
 [ext_resource type="Texture2D" uid="uid://bgro56p82hk4" path="res://ui/SALIR SELECCIONADO.png" id="6_be0vo"]
+[ext_resource type="AudioStream" uid="uid://dg3pc31ennvc6" path="res://assets/musica/Santafesina_Menu.ogg" id="7_be0vo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gcj2g"]
 texture = ExtResource("3_4ljc8")
@@ -44,3 +45,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_be0vo")
 
 [node name="VersionMargin" parent="." index="5" unique_id=1732528471]
 visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8" unique_id=277721119]
+stream = ExtResource("7_be0vo")
+autoplay = true
