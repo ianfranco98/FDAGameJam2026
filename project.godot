@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Bancando el Asado"
+config/name="Bancando la Parrilla"
 run/main_scene="res://menues/scenes/opening/opening.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
