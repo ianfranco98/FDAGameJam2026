@@ -6,6 +6,8 @@ signal usages_changed(current: int, maximum: int)
 @export var max_usages: int = 3
 @export var anger_reduction: float = 20.0
 @export var full_texture: Texture2D
+@export var two_usages_texture: Texture2D
+@export var one_usage_texture: Texture2D
 @export var empty_texture: Texture2D
 
 var usages_left: int = 3
@@ -61,4 +63,10 @@ func refill() -> void:
 func _refresh_sprite() -> void:
 	sprite.visible = not is_picked_up
 	sprite.modulate = Color.WHITE
-	sprite.texture = empty_texture if usages_left == 0 else full_texture
+	match usages_left:
+		2:
+			sprite.texture = two_usages_texture
+		1:
+			sprite.texture = one_usage_texture
+		_:
+			sprite.texture = empty_texture if usages_left <= 0 else full_texture

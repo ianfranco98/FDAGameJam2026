@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://crndfbb22ri4s" path="res://addons/maaacks_menus_template/base/nodes/windows/overlaid_window_scene_container.tscn" id="1_up6uk"]
 [ext_resource type="Script" uid="uid://csodplr647vsf" path="res://menues/scenes/windows/main_menu_credits_window.gd" id="2_7ivdt"]
-[ext_resource type="PackedScene" uid="uid://16lolt4wgl0t" path="res://menues/scenes/credits/scrollable_credits.tscn" id="3_7rgvb"]
 
 [node name="MainMenuCreditsOverlaidWindow" unique_id=1453761674 instance=ExtResource("1_up6uk")]
 anchors_preset = 15
@@ -15,7 +14,31 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
 script = ExtResource("2_7ivdt")
-packed_scene = ExtResource("3_7rgvb")
+text = "
+
+
+
+[font_size=0]Créditos[/font_size]
+
+Arte:
+María Clara 'Klaryz' S. [url=https://www.instagram.com/0_clarilu_0/]@0_clarilu_0[/url] - [url=https://www.instagram.com/Klaryz_/]@Klaryz_[/url]
+Pereyra, Francisco Martín [url=https://www.instagram.com/francisco.pereyra/]@francisco.pereyra[/url]
+
+Diseño:
+Alvaro Perez Dominguez [url=https://www.instagram.com/decapodo.gd/]@decapodo.gd[/url]
+
+UI:
+Macarena Segura Alpaca [url=https://www.instagram.com/mk9.notfound/]@mk9.notfound[/url]
+Julia Orellano [url=https://www.instagram.com/julsiore/]@julsiore[/url]
+
+Programación:
+[url=https://lhycan.itch.io/]lhycan[/url]
+
+
+[font_size=0]Godot Menus Template[/font_size]
+Author: [url=https://github.com/Maaack/Godot-Menus-Template/graphs/contributors]Marek Belski and contributors[/url]  
+Source: [url=https://github.com/Maaack/Godot-Menus-Template]github: Godot-Menus-Template[/url]
+"
 
 [node name="TitleMargin" parent="ContentContainer/BoxContainer" parent_id_path=PackedInt32Array(394030069) index="0" unique_id=1262022916]
 visible = false

@@ -13,7 +13,8 @@ Diseño:
 Alvaro Perez Dominguez [@decapodo.gd](https://www.instagram.com/decapodo.gd/)
 
 UI:
-Segura Alpaca  Macarena [@mk9.notfound](https://www.instagram.com/mk9.notfound/)
+Macarena Segura Alpaca [@mk9.notfound](https://www.instagram.com/mk9.notfound/)
+Julia Orellano [@julsiore](https://www.instagram.com/julsiore/)
 
 Programación:
 [lhycan](https://lhycan.itch.io/)
