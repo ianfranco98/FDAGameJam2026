@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Meat" format=3 uid="uid://cqp0a7ma5ti2v"]
+
+[ext_resource type="Texture2D" uid="uid://bowojo44mryl7" path="res://assets/Props/chinchu_quemado.png" id="1_cb2a0"]
+[ext_resource type="Texture2D" uid="uid://d13uyjw75trdj" path="res://assets/Props/chinchu_cocido.png" id="2_xyy43"]
+[ext_resource type="Texture2D" uid="uid://ofbpypug777b" path="res://assets/Props/chinchu_cocido_volteado.png" id="3_gatj7"]
+[ext_resource type="Texture2D" uid="uid://k3d7gd7oitna" path="res://assets/Props/chinchu_crudo.png" id="4_x1t7e"]
+[ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="5_13bmo"]
+
+[resource]
+script = ExtResource("5_13bmo")
+meat_type = 3
+display_name = "Chinchu"
+raw_texture = ExtResource("4_x1t7e")
+cooked_texture = ExtResource("2_xyy43")
+half_cooked_texture = ExtResource("3_gatj7")
+burned_texture = ExtResource("1_cb2a0")
+first_side_duration = 4.0
+second_side_duration = 2.0
+burn_delay = 7.0
+max_wait_time = 20.0
+metadata/_custom_type_script = "uid://d2mgufc8y8sd8"

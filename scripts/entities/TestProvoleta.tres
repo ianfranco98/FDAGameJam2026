@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Meat" format=3 uid="uid://bdcpq87bxhggl"]
+
+[ext_resource type="Texture2D" uid="uid://c16xuawb2bel7" path="res://assets/Props/provoleta_quemado.png" id="1_7cpf7"]
+[ext_resource type="Script" uid="uid://d2mgufc8y8sd8" path="res://scripts/entities/meat.gd" id="2_s6l5r"]
+[ext_resource type="Texture2D" uid="uid://ijpwkg01apln" path="res://assets/Props/provoleta_cocido.png" id="2_vk5le"]
+[ext_resource type="Texture2D" uid="uid://dw7inyfiw1xiv" path="res://assets/Props/provoleta_cocido_volteado.png" id="3_fd6la"]
+[ext_resource type="Texture2D" uid="uid://1bw4jb8ot44y" path="res://assets/Props/provoleta_crudo.png" id="4_nk46y"]
+
+[resource]
+script = ExtResource("2_s6l5r")
+meat_type = 2
+display_name = "Provoleta"
+raw_texture = ExtResource("4_nk46y")
+cooked_texture = ExtResource("2_vk5le")
+half_cooked_texture = ExtResource("3_fd6la")
+burned_texture = ExtResource("1_7cpf7")
+first_side_duration = 2.0
+second_side_duration = 4.0
+burn_delay = 6.5
+max_wait_time = 19.0
+metadata/_custom_type_script = "uid://d2mgufc8y8sd8"
