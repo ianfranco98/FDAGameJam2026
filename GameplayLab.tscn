@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b2qdj3ww6etd4"]
 
 [ext_resource type="Script" uid="uid://42ra35msfqse" path="res://scripts/gameplay_lab.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://436u5owvk3g8" path="res://assets/Escenario/UNLPGJ_fondo.png" id="2_bcham"]
 [ext_resource type="PackedScene" uid="uid://cdrx467pqcebk" path="res://scenes/entities/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://ca1nuhul6ngnn" path="res://scenes/entities/meat_desk.tscn" id="4_meat_desk"]
 [ext_resource type="PackedScene" uid="uid://cqwm504skrohg" path="res://scenes/entities/grill.tscn" id="5_grill"]
@@ -48,47 +49,11 @@ shadow_size = 10
 [node name="GameplayLab" type="Node2D" unique_id=2111630056]
 script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1277276618]
-z_index = -20
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-color = Color(0.152941, 0.223529, 0.188235, 1)
-
-[node name="SkyBand" type="ColorRect" parent="." unique_id=1146415888]
-z_index = -19
-offset_left = 1.0
-offset_top = -3.0
-offset_right = 1281.0
-offset_bottom = 437.0
-mouse_filter = 2
-color = Color(0.360784, 0.568627, 0.65098, 1)
-
-[node name="Lane" type="ColorRect" parent="." unique_id=1763433040]
-z_index = -18
-offset_top = 445.0
-offset_right = 1280.0
-offset_bottom = 680.0
-mouse_filter = 2
-color = Color(0.27451, 0.211765, 0.152941, 1)
-
-[node name="LaneLine" type="ColorRect" parent="." unique_id=308532620]
-z_index = -17
-offset_left = 2.0
-offset_top = 494.0
-offset_right = 1282.0
-offset_bottom = 500.0
-mouse_filter = 2
-color = Color(0.772549, 0.611765, 0.321569, 0.65)
-
-[node name="GuestTable" type="ColorRect" parent="." unique_id=391145268]
-z_index = -5
-offset_left = 560.0
-offset_top = 457.0
-offset_right = 1281.975
-offset_bottom = 541.63
-mouse_filter = 2
-color = Color(0.552941, 0.337255, 0.180392, 1)
+[node name="UnlpgjFondo" type="Sprite2D" parent="." unique_id=1543040768]
+position = Vector2(2, 94)
+scale = Vector2(0.974074, 0.974074)
+texture = ExtResource("2_bcham")
+centered = false
 
 [node name="Entities" type="Node2D" parent="." unique_id=241066293]
 
@@ -102,8 +67,6 @@ meat_sprite_scale = Vector2(0.2, 0.2)
 
 [node name="Fernet" parent="Entities" unique_id=1191953493 instance=ExtResource("6_fernet")]
 position = Vector2(445, 463)
-full_texture = null
-empty_texture = null
 interaction_label = "Interactuar"
 
 [node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]

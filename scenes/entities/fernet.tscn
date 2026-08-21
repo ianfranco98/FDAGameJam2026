@@ -1,21 +1,22 @@
 [gd_scene format=3 uid="uid://b203800q6gsi1"]
 
 [ext_resource type="Script" uid="uid://4o14h6ovnn2g" path="res://scripts/entities/fernet.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://lruorc2rvrr3" path="res://assets/placeholders/fernet.svg" id="2_texture"]
-[ext_resource type="Texture2D" uid="uid://b7o08po1vgcis" path="res://assets/placeholders/fernet_empty.svg" id="3_empty_texture"]
+[ext_resource type="Texture2D" uid="uid://cx8a0wxlvb63v" path="res://assets/Props/fernet_estado4.png" id="2_4cr5j"]
+[ext_resource type="Texture2D" uid="uid://dewsttre8qnpk" path="res://assets/Props/fernet_estado1.png" id="3_amns7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_interaction"]
 radius = 68.0
 
 [node name="Fernet" type="Node2D" unique_id=1042942033]
 script = ExtResource("1_script")
-full_texture = ExtResource("2_texture")
-empty_texture = ExtResource("3_empty_texture")
+full_texture = ExtResource("2_4cr5j")
+empty_texture = ExtResource("3_amns7")
 interaction_label = "Tomar vaso vacío"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1798022660]
-position = Vector2(0, -48)
-texture = ExtResource("2_texture")
+position = Vector2(0, -7.23)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_4cr5j")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=924588091]
 position = Vector2(0, -38)

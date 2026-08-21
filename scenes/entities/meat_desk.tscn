@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://ca1nuhul6ngnn"]
 
 [ext_resource type="Script" uid="uid://c1rfbbyeq8q3" path="res://scripts/entities/meat_desk.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://c8uvxq53ghvnr" path="res://assets/placeholders/meat_desk.svg" id="2_texture"]
-[ext_resource type="Texture2D" uid="uid://k3d7gd7oitna" path="res://assets/Props/chinchu_crudo.png" id="3_p0kp0"]
-[ext_resource type="Texture2D" uid="uid://dj1ytqrdy8q0v" path="res://assets/Props/chorizo_crudo.png" id="4_ushcm"]
+[ext_resource type="Texture2D" uid="uid://84krefrb76er" path="res://assets/Escenario/mesacarne.png" id="2_e64xw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_interaction"]
 radius = 78.0
@@ -14,47 +12,7 @@ interaction_label = "Tomar carne"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1350585362]
 position = Vector2(0, -38)
-texture = ExtResource("2_texture")
-
-[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1662767915]
-position = Vector2(7.999996, -60)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_p0kp0")
-
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=481052392]
-position = Vector2(-39, -57)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_ushcm")
-
-[node name="Sprite2D9" type="Sprite2D" parent="." unique_id=893220080]
-position = Vector2(0.99999905, -73)
-scale = Vector2(0.19999999, 0.19999999)
-texture = ExtResource("4_ushcm")
-
-[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1805070705]
-position = Vector2(-12.999996, -68)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_p0kp0")
-
-[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=1162321310]
-position = Vector2(-8.6, -57)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_ushcm")
-
-[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=1992598439]
-position = Vector2(-29.999992, -67)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_p0kp0")
-
-[node name="Sprite2D7" type="Sprite2D" parent="." unique_id=1787484358]
-position = Vector2(26.999994, -57)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_ushcm")
-
-[node name="Sprite2D8" type="Sprite2D" parent="." unique_id=763032364]
-position = Vector2(13.999996, -70)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_p0kp0")
+texture = ExtResource("2_e64xw")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=693147601]
 position = Vector2(0, -35)

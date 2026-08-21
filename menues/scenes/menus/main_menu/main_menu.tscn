@@ -1,25 +1,46 @@
 [gd_scene format=3 uid="uid://qxri7qxqrpl"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_menus_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_4ljc8"]
+[ext_resource type="Texture2D" uid="uid://dasibid3apy1d" path="res://ui/BOTON NUEVO JUEGO-alpha.png" id="3_4ljc8"]
+[ext_resource type="Texture2D" uid="uid://bhu6jbr7iqgkf" path="res://ui/SELECCIONADO NUEVO JUEGO.png" id="3_m8rc6"]
 [ext_resource type="PackedScene" uid="uid://c5cv4wu328oky" path="res://menues/scenes/windows/main_menu_credits_window.tscn" id="4_be0vo"]
+[ext_resource type="Texture2D" uid="uid://b1wqnjwa8e40m" path="res://ui/CREDITOS SELECCIONADO.png" id="5_hp7dm"]
+[ext_resource type="Texture2D" uid="uid://bgro56p82hk4" path="res://ui/SALIR SELECCIONADO.png" id="6_be0vo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gcj2g"]
+texture = ExtResource("3_4ljc8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m8rc6"]
+texture = ExtResource("3_m8rc6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hp7dm"]
+texture = ExtResource("5_hp7dm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_be0vo"]
+texture = ExtResource("6_be0vo")
 
 [node name="MainMenu" unique_id=869232425 instance=ExtResource("1_4ljc8")]
 credits_packed_scene = ExtResource("4_be0vo")
 
-[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" parent_id_path=PackedInt32Array(556427956) index="0" unique_id=359406872]
-text = "Bancando el Asado"
-
 [node name="SubTitleMargin" parent="MenuContainer" parent_id_path=PackedInt32Array(396616752) index="1" unique_id=1510335937]
 visible = false
 
-[node name="NewGameButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="0" unique_id=2044537792]
-text = "Nuevo Juego"
+[node name="MenuButtonsBoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" parent_id_path=PackedInt32Array(116448484) index="0" unique_id=2017477786]
+offset_left = -119.0
+offset_top = -118.0
+offset_right = 213.0
+offset_bottom = 271.0
+scale = Vector2(0.8, 0.8)
 
-[node name="CreditsButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="2" unique_id=301223169]
-text = "Creditos"
+[node name="NewGameButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="0" unique_id=2044537792]
+theme_override_styles/normal = SubResource("StyleBoxTexture_gcj2g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m8rc6")
 
-[node name="ExitButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="3" unique_id=1750454379]
-text = "Salir"
+[node name="CreditsButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="2" unique_id=301223169]
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hp7dm")
 
-[node name="VersionMargin" parent="." index="4" unique_id=1732528471]
+[node name="ExitButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="3" unique_id=1750454379]
+theme_override_styles/pressed = SubResource("StyleBoxTexture_be0vo")
+
+[node name="VersionMargin" parent="." index="5" unique_id=1732528471]
 visible = false

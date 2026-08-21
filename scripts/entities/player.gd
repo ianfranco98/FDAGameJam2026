@@ -2,7 +2,7 @@ class_name Player
 extends Character
 
 const FERNET_TEXTURE: Texture2D = preload("res://assets/placeholders/fernet.svg")
-const EMPTY_FERNET_TEXTURE: Texture2D = preload("res://assets/placeholders/fernet_empty.svg")
+const EMPTY_FERNET_TEXTURE: Texture2D = preload("res://assets/Props/fernet_estado1.png")
 const RAW_MEAT_MODULATE := Color.WHITE
 const COOKED_MEAT_MODULATE := Color(1.0, 0.62, 0.32)
 const EMPTY_FERNET_MODULATE := Color(0.62, 0.62, 0.62, 0.55)
