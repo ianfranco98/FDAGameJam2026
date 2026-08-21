@@ -10,7 +10,7 @@ WIN_DIR="$BUILD_DIR/windows"
 WEB_DIR="$BUILD_DIR/web"
 
 ITCH_USERNAME="alvaropd"
-ITCH_GAME_ID="fda-jam2026"
+ITCH_GAME_ID="bancando-la-parrilla"
 # ---------------------
 
 echo "🧼 Cleaning up old builds..."
