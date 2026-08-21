@@ -1,4 +1,4 @@
-# Creditos
+### Créditos
 
 Arte:
 María Clara 'Klaryz' S. [@0_clarilu_0](https://www.instagram.com/0_clarilu_0/) - [@Klaryz_](https://www.instagram.com/Klaryz_/)
@@ -12,8 +12,6 @@ Segura Alpaca  Macarena [@mk9.notfound](https://www.instagram.com/mk9.notfound/)
 
 Programación:
 [lhycan](https://lhycan.itch.io/)
-
-Sonido:
 
 
 ### Godot Menus Template
