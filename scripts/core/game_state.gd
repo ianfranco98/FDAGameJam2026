@@ -11,9 +11,11 @@ signal game_lost
 @export var initial_anger: float = 0.0
 @export var npc_waypoint_speed: float = 200.0
 @export var npc_pursuit_speed: float = 300.0
+@export_range(0.1, 120.0, 0.1, "suffix:s") var npc_event_interval: float = 20.0
 
 var current_orders: Array[MeatOrder] = []
 var active_timers: Array[SceneTreeTimer] = []
+var npc_event_timer: Timer
 
 var anger: float = 50.0
 var has_won: bool = false
@@ -21,6 +23,12 @@ var has_lost: bool = false
 
 
 func _ready() -> void:
+	npc_event_timer = Timer.new()
+	npc_event_timer.wait_time = npc_event_interval
+	npc_event_timer.one_shot = false
+	npc_event_timer.timeout.connect(_on_npc_event_timer_timeout)
+	add_child(npc_event_timer)
+	npc_event_timer.start()
 	anger = clampf(initial_anger, 0.0, max_anger)
 	anger_changed.emit(anger, max_anger)
 
@@ -42,6 +50,8 @@ func reset_game() -> void:
 	active_timers.clear()
 	has_won = false
 	has_lost = false
+	if npc_event_timer != null:
+		npc_event_timer.start()
 	_set_anger(initial_anger)
 
 
@@ -90,6 +100,8 @@ func check_win_condition() -> void:
 		if npc == null or npc.order_counter < npc.available_orders.size():
 			return
 	has_won = true
+	if npc_event_timer != null:
+		npc_event_timer.stop()
 	game_won.emit()
 
 
@@ -125,6 +137,18 @@ func _expire_order(order: MeatOrder) -> void:
 	_remove_order(order)
 	add_anger(10.0)
 	order_expired.emit(order)
+	check_win_condition()
+
+
+func _on_npc_event_timer_timeout() -> void:
+	if has_won or has_lost:
+		return
+	var npc_nodes: Array[Node] = get_tree().get_nodes_in_group("NPC")
+	if npc_nodes.is_empty():
+		return
+	var npc := npc_nodes.pick_random() as NPC
+	if npc != null:
+		npc.test_activate_approach()
 
 
 func _remove_order(order: MeatOrder) -> void:
@@ -137,6 +161,8 @@ func _check_lose_condition() -> void:
 	if has_lost or has_won or anger < max_anger:
 		return
 	has_lost = true
+	if npc_event_timer != null:
+		npc_event_timer.stop()
 	game_lost.emit()
 
 

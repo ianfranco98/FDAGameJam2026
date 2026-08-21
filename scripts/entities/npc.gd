@@ -55,7 +55,7 @@ func _ready() -> void:
 	add_to_group("NPC")
 		
 	# code snippet just to test orders 
-	var rand_time: int = 3 + (randi() % 2)
+	var rand_time: int = 3 + (randi() % 6)
 	await get_tree().create_timer(rand_time, false).timeout
 	request_order()
 
