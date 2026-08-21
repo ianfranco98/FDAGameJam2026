@@ -14,7 +14,7 @@ empty_texture = ExtResource("3_amns7")
 interaction_label = "Tomar vaso vacío"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1798022660]
-position = Vector2(0, -7.23)
+position = Vector2(0, -79)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_4cr5j")
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://42ra35msfqse" path="res://scripts/gameplay_lab.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://436u5owvk3g8" path="res://assets/Escenario/UNLPGJ_fondo.png" id="2_bcham"]
 [ext_resource type="PackedScene" uid="uid://cdrx467pqcebk" path="res://scenes/entities/player.tscn" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://cobg54m3j45dk" path="res://assets/Escenario/mesafernet.png" id="3_0013t"]
 [ext_resource type="PackedScene" uid="uid://ca1nuhul6ngnn" path="res://scenes/entities/meat_desk.tscn" id="4_meat_desk"]
 [ext_resource type="PackedScene" uid="uid://cqwm504skrohg" path="res://scenes/entities/grill.tscn" id="5_grill"]
 [ext_resource type="PackedScene" uid="uid://b203800q6gsi1" path="res://scenes/entities/fernet.tscn" id="6_fernet"]
@@ -10,8 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://c4hi1a6i08epf" path="res://scenes/entities/serving_table.tscn" id="8_serving"]
 [ext_resource type="PackedScene" uid="uid://u0qrmolvv2qn" path="res://scenes/ui/cooking_minigame.tscn" id="9_minigame"]
 [ext_resource type="PackedScene" uid="uid://dgqw5vxyoodpn" path="res://scenes/NPCs/fantasma.tscn" id="10_5kvol"]
+[ext_resource type="Resource" uid="uid://bdcpq87bxhggl" path="res://scripts/entities/TestProvoleta.tres" id="10_68d2n"]
 [ext_resource type="PackedScene" uid="uid://drtndyxros5vl" path="res://scenes/NPCs/piñon.tscn" id="10_gt31q"]
 [ext_resource type="Resource" uid="uid://dpride3ldn3s7" path="res://scripts/entities/TestChori.tres" id="10_tira_asado"]
+[ext_resource type="Resource" uid="uid://cqp0a7ma5ti2v" path="res://scripts/entities/TestChinchu.tres" id="11_0013t"]
 [ext_resource type="PackedScene" uid="uid://ljyf67nw3uoo" path="res://scenes/NPCs/miku.tscn" id="11_xuk4v"]
 [ext_resource type="Texture2D" uid="uid://bvrrlqbypem4e" path="res://ui/Barra1.png" id="12_5kvol"]
 [ext_resource type="PackedScene" uid="uid://cc82mfor6fram" path="res://scenes/NPCs/alien.tscn" id="13_fh2tn"]
@@ -57,6 +60,10 @@ centered = false
 
 [node name="Entities" type="Node2D" parent="." unique_id=241066293]
 
+[node name="Sprite2D" type="Sprite2D" parent="Entities" unique_id=183475295]
+position = Vector2(459, 430)
+texture = ExtResource("3_0013t")
+
 [node name="MeatDesk" parent="Entities" unique_id=223307176 instance=ExtResource("4_meat_desk")]
 position = Vector2(77, 487)
 interaction_label = "Interactuar"
@@ -66,7 +73,7 @@ position = Vector2(282, 452)
 meat_sprite_scale = Vector2(0.2, 0.2)
 
 [node name="Fernet" parent="Entities" unique_id=1191953493 instance=ExtResource("6_fernet")]
-position = Vector2(445, 463)
+position = Vector2(451, 463)
 interaction_label = "Interactuar"
 
 [node name="Player" parent="Entities" unique_id=1465651345 instance=ExtResource("2_player")]
@@ -76,13 +83,13 @@ max_x = 510.0
 
 [node name="NPCPiñon" parent="Entities" unique_id=435966552 instance=ExtResource("10_gt31q")]
 position = Vector2(780, 472)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_68d2n"), ExtResource("10_68d2n"), ExtResource("11_0013t"), ExtResource("10_tira_asado")])
 next_order_delay = 1.5
 failure_anger_amount = 37.0
 
 [node name="NPCFantasma" parent="Entities" unique_id=902449602 instance=ExtResource("10_5kvol")]
 position = Vector2(658, 468)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_68d2n"), ExtResource("10_68d2n"), ExtResource("10_68d2n"), ExtResource("10_68d2n"), ExtResource("10_68d2n")])
 next_order_delay = 5.0
 failure_anger_amount = 37.0
 
@@ -98,18 +105,18 @@ interaction_label = "Interactuar"
 
 [node name="NPCAlien" parent="Entities" unique_id=1915376213 instance=ExtResource("13_fh2tn")]
 position = Vector2(884.02, 551)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("11_0013t"), ExtResource("11_0013t"), ExtResource("11_0013t"), ExtResource("11_0013t"), ExtResource("11_0013t")])
 failure_anger_amount = 37.0
 
 [node name="NPCGymBro" parent="Entities" unique_id=844357468 instance=ExtResource("14_fh2tn")]
 position = Vector2(773, 559)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("11_0013t"), ExtResource("10_tira_asado"), ExtResource("10_68d2n"), ExtResource("11_0013t"), ExtResource("10_tira_asado")])
 next_order_delay = 4.0
 failure_anger_amount = 37.0
 
 [node name="NPCDumbo" parent="Entities" unique_id=577103773 instance=ExtResource("14_bcham")]
 position = Vector2(662, 559)
-available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado"), ExtResource("10_tira_asado")])
+available_orders = Array[ExtResource("8_knb0c")]([ExtResource("10_68d2n"), ExtResource("10_tira_asado"), ExtResource("11_0013t"), ExtResource("10_tira_asado"), ExtResource("10_68d2n")])
 next_order_delay = 3.5
 failure_anger_amount = 37.0
 
